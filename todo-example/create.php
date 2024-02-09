@@ -1,4 +1,4 @@
-<slot id="create_slot"></slot>
+<slot id="create-slot"></slot>
 
 <?php
 $_REQUEST['id'] = uniqid();
