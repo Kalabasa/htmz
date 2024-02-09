@@ -1,0 +1,1 @@
+<iframe hidden name="htmz" onload="window!=this.contentWindow&&document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.children)"></iframe>

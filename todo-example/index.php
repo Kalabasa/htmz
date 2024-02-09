@@ -1,0 +1,18 @@
+<?php include('../lib/htmz.php') ?>
+<link rel="stylesheet" href="style.css">
+
+<h1>my todo list</h1>
+
+<form
+  class="create-form"
+  target="htmz"
+  action="create.php#create-slot"
+  method="post"
+>
+  <input name="content" type="text" placeholder="Create todo items...">
+  <button aria-label="Create">↵</button>
+</form>
+
+<ul>
+  <slot id="create-slot"></slot>
+</ul>

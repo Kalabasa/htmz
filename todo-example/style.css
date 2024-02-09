@@ -1,0 +1,102 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+  margin: 20vh auto;
+  max-width: 60ch;
+  background: #fffff4;
+  color: #410;
+}
+
+h1 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+input, button {
+  border: none;
+  color: inherit;
+  font: inherit;
+}
+input {
+  background: none;
+}
+input:focus-visible {
+  outline: solid 1px #410;
+}
+button {
+  background: #621;
+  color: white;
+  font-weight: bold;
+  border-radius: 0.25rem;
+}
+button:hover, button:focus-visible {
+  background: #843;
+}
+
+.create-form {
+  display: flex;
+  margin: 0;
+  height: 2.5rem;
+  border: solid 1px #ecb;
+  background: #fcfcf4;
+}
+.create-form > input {
+  flex: 1 1 auto;
+  padding: 0 0.5rem;
+}
+.create-form > button {
+  flex: 0 1 auto;
+  margin: 0.25rem;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding-inline: 0;
+}
+.todo-item {
+  border-bottom: solid 1px #ecb;
+  margin: 0;
+}
+
+.todo-item > form {
+  display: flex;
+  margin: 0;
+  height: 2.5rem;
+  align-items: stretch;
+}
+
+.todo-item-content {
+  flex: 1 1 auto;
+}
+
+.todo-item-save {
+  margin: 0.25rem;
+  opacity: 0;
+}
+.todo-item-save:focus,
+.todo-item-content:focus ~ .todo-item-save {
+  opacity: 1;
+}
+
+.todo-item-clear {
+  margin: 0.5rem;
+  aspect-ratio: 1;
+  background: none;
+  color: transparent;
+  border: solid 1px #ecb;
+  border-radius: 500%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.todo-item-clear:hover, .todo-item-clear:focus-visible {
+  background: none;
+  color: inherit;
+}
+.todo-item-clear:hover ~ .todo-item-content,
+.todo-item-clear:focus-visible ~ .todo-item-content {
+  opacity: 0.4;
+  text-decoration: line-through;
+}

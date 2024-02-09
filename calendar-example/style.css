@@ -1,0 +1,189 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, avenir next, avenir,
+    segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial,
+    sans-serif;
+  margin: 10vh auto;
+  max-width: 120ch;
+  background: #fffff4;
+  color: #140;
+}
+
+h1 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+input,
+button {
+  border: none;
+  color: inherit;
+  font: inherit;
+}
+input {
+  background: none;
+}
+input:focus-visible {
+  outline: solid 1px #140;
+}
+button {
+  background: #261;
+  color: white;
+  font-weight: bold;
+  border-radius: 0.25rem;
+}
+button:hover,
+button:focus-visible {
+  background: #483;
+}
+
+.month-control {
+  display: flex;
+}
+.month-control h2 {
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 0;
+  margin-inline-end: auto;
+}
+.month-control a {
+  flex: 0 1 6ch;
+  text-align: end;
+  color: inherit;
+}
+
+.month-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.wday-name {
+  opacity: 0.6;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.day {
+  border-top: solid 1px currentColor;
+  min-width: 0;
+  min-height: 8rem;
+}
+.day-weekend {
+  color: #c88;
+}
+.day-past {
+  color: #2423;
+}
+
+.date {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.date ul {
+  padding: 0;
+  list-style: none;
+}
+
+.date-num {
+  position: absolute;
+  z-index: 1;
+}
+.day-today .date-num {
+  padding: 0 0.125em;
+  background: #220;
+  color: white;
+}
+
+.create-event-form {
+  flex: 1 1 auto;
+  margin: 0;
+}
+.create-event {
+  background: none;
+  color: transparent;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+.create-event:hover,
+.create-event:focus-visible {
+  background: #efe4;
+}
+.create-event:focus-visible {
+  color: #140;
+}
+
+.event {
+  margin: 0.25rem 0.5rem;
+}
+.event:first-child {
+  margin-top: 0.5rem;
+}
+
+.event form {
+  display: flex;
+  margin: 0;
+}
+
+.event-button {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 0.25rem;
+  background: white;
+  color: #000b;
+  border-radius: 0.25rem;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: start;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+.event-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.event-button:hover::after,
+.event-button:focus-visible::after {
+  background: #fff4;
+}
+.day-past .event:not(:focus-within):not(:has(dialog[open])) .event-button {
+  opacity: 0.4;
+}
+
+.event dialog {
+  flex-direction: column;
+  gap: 0.5rem;
+  inset: unset;
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  background: white;
+  border: solid 1px #ceb;
+  box-shadow: 0 0.25rem 0.5rem #0301, 0 0rem 2rem #0301;
+  z-index: 9999;
+}
+.event dialog[open] {
+  display: flex;
+}
+
+.event-form-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.event input[type="text"] {
+  border-bottom: solid 1px currentColor;
+  max-width: 15ch;
+}
+
+.delete-button {
+  background: #820;
+}
+.delete-button:hover,
+.delete-button:focus-visible {
+  background: #a42;
+}
