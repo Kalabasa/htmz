@@ -1,14 +1,18 @@
 <?php
-$date_str = $_REQUEST['date_str'];
-$highlighted = $_REQUEST['highlighted'];
-$_REQUEST = [];
+require_once 'util/props.php';
 
-$global_events = $global_events ?? load_events($year, $month);
-$date_num = date_parse($date_str)['day'];
+[
+  'date_str' => $date_str, // YYYY-MM-DD
+  'highlighted' => $highlighted,
+] = consume_props() + [
+  'highlighted' => false,
+];
+
+$date = date_parse($date_str);
 $create_slot_id = "create-slot-{$date_str}";
 
 $events = array_filter(
-  $global_events,
+  load_events($date['year'], $date['month']),
   fn($event) => $event['date_str'] === $date_str
 );
 ?>
@@ -17,17 +21,17 @@ $events = array_filter(
   id="date-<?= $date_str ?>"
   class="date <?= $highlighted?'date-highlighted':'' ?>"
 >
-  <div class="date-num"><?= $date_num ?></div>
+  <div class="date-num"><?= $date['day'] ?></div>
 
   <ul>
     <?php
     foreach ($events as $event) {
-      $_REQUEST['id'] = $event['id'];
-      $_REQUEST['date_str'] = $event['date_str'];
-      $_REQUEST['content'] = $event['content'];
-      $_REQUEST['color'] = $event['color'];
-      $_REQUEST['closed'] = 1;
-      include('event.php');
+      render('event.php', [
+        'id' => $event['id'],
+        'date_str' => $event['date_str'],
+        'content' => $event['content'],
+        'color' => $event['color'],
+      ]);
     }
     ?>
     <slot id="<?= $create_slot_id ?>"></slot>
@@ -35,7 +39,6 @@ $events = array_filter(
 
   <form
     class="create-event-form"
-    target="htmz"
     action="create_event.php#<?= $create_slot_id ?>"
     method="post"
   >

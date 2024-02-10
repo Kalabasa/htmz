@@ -2,5 +2,5 @@
 
 <?php
 $_REQUEST['id'] = uniqid();
-include('edit.php');
+include 'edit.php';
 ?>

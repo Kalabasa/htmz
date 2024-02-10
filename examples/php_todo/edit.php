@@ -8,14 +8,12 @@ $html_id = "todo-{$id}";
   id="<?= $html_id ?>"
 >
   <form
-    target="htmz"
     action="edit.php#<?= $html_id ?>"
     method="post"
   >
     <input name="id" type="hidden" value="<?= $id ?>">
     <button
       class="todo-item-clear"
-      target="htmz"
       formaction="clear.php#<?= $html_id ?>"
       aria-label="Clear">
       ✔

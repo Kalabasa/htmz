@@ -1,11 +1,10 @@
-<?php include('../lib/htmz.php') ?>
+<base target="htmz">
 <link rel="stylesheet" href="style.css">
 
 <h1>my todo list</h1>
 
 <form
   class="create-form"
-  target="htmz"
   action="create.php#create-slot"
   method="post"
 >
@@ -16,3 +15,5 @@
 <ul>
   <slot id="create-slot"></slot>
 </ul>
+
+<?php include '../../htmz.html' ?>
