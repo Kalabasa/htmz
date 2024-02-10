@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="style.css" />
+<base target="htmz" />
+
+<h1>tabs</h1>
+
+<div role="tablist">
+  <a target="htmz" href="dog.html#my-tab-panel">Dog</a>
+  <a target="htmz" href="cat.html#my-tab-panel">Cat</a>
+  <a target="htmz" href="horse.html#my-tab-panel">Horse</a>
+</div>
+
+<slot id="my-tab-panel" role="tabpanel"></slot>
+
+<iframe hidden name="htmz" onload="window!=this.contentWindow&&document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.children)"></iframe>

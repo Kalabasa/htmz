@@ -16,7 +16,7 @@ It does one thing and one thing only.
 
 - **Enables loading of HTML resources within _any element_ in the page, rather than loading a full web page at a time.**
 
-So, imagine clicking a link, but it only updates a relevant part of the page, not reload the whole page. Without having to write scripts or special HTML.
+So, imagine clicking a link, but it only updates a relevant part of the page, not reload the whole page. Without having to write client-side scripts or special HTML.
 
 This idea is not new. Dividing web pages into independently reloading parts has been a thing since mid-1990s. They were called _frames_, namely, &lt;iframe&gt;s, &lt;frame&gt;s, and &lt;frameset&gt;s.
 
@@ -82,25 +82,12 @@ Need advanced selectors? Need error handling? Here’s a development version of 
 
     // Write your extensions here
 
-    document.querySelector(selector)?
-      .replaceWith(...frame.contentDocument.body.children);
+    document.querySelector(selector)
+      ?.replaceWith(...frame.contentDocument.body.children);
   }
 </script>
 <iframe hidden name="htmz" onload="htmz(this)"></iframe>
 ```
-
-### Free extensions
-
-Handle loading errors:
-
-```js
-if (frame.contentDocument.) {
-  alert("Error");
-  return;
-}
-```
-
-
 
 ## How does it work?
 

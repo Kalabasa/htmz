@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="style.css" />
+<base target="htmz" />
+
+<h1>simple error handling</h1>
+
+<p>
+  This example employs an htmz extension that intercepts and generically handles error responses. In this case, a broken link (404).
+</p>
+<p>
+  <a href="slide1.html#slide">Start slideshow!</a>
+</p>
+
+<slot id="slide"></slot>
+
+<!-- htmz with simple error handling -->
+<script>
+  function htmz(frame) {
+    if (window === frame.contentWindow) return;
+
+    // ------------------------------------------------------------------------
+    // Simple error handling
+    // ------------------------------------------------------------------------
+    // hacky way to get the frame's current status code
+    const status =
+      frame.contentWindow.performance.getEntriesByType("navigation")[0]
+        ?.responseStatus;
+
+    console.log(frame.contentWindow.location.href, status);
+
+    if (status && (status < 200 || status > 299)) {
+      alert(frame.contentWindow.document.title);
+      return;
+    }
+    // ------------------------------------------------------------------------
+
+    document.querySelector(frame.contentWindow.location.hash || ':not(*)')
+      ?.replaceWith(...frame.contentDocument.body.children);
+  }
+</script>
+<iframe hidden name="htmz" onload="window.htmz(this)"></iframe>
