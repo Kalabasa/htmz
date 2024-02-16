@@ -1,0 +1,11 @@
+<script>
+  const params = new URLSearchParams(location.search);
+  const id = params.get("id");
+  const value = params.get("value");
+  document.write(`
+  <form id='${id}' action='examples/edit/field.html#${id}'>
+    <input hidden name='id' value='${id}'>
+    <input name='value' value='${value}'>
+    <button>save</button>
+  </form>`);
+</script>
