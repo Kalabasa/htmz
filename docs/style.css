@@ -300,3 +300,27 @@ pre.code {
     background-position: 100% 0;
   }
 }
+
+.examples-photo-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 2fr 3fr;
+  grid-template-rows: repeat(2, min-content);
+  gap: 1rem;
+}
+.examples-photo-grid img {
+  width: 100%;
+  object-position: top;
+  object-fit: cover;
+  border: solid 1px #0001;
+  border-bottom-color: #0002;
+}
+.calendar-screenshot {
+  grid-row: span 2;
+}
+@media (max-width: 120ch) {
+  .examples-photo-grid {
+    grid-template-columns: minmax(0, 40ch);
+    grid-template-rows: repeat(4, min-content);
+  }
+}
