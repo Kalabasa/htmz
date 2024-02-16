@@ -1,10 +1,13 @@
-<link rel="stylesheet" href="style.css" />
 <base target="htmz" />
+<link rel="stylesheet" href="style.css" />
 
 <h1>simple error handling</h1>
 
 <p>
-  This example employs an htmz extension that intercepts and generically handles error responses. In this case, a broken link (404).
+  The default behaviour for htmz is to put any response, including error pages, into the target.
+</p>
+<p>
+  This example employs an htmz extension that intercepts and handles error responses generically.
 </p>
 <p>
   <a href="slide1.html#slide">Start slideshow!</a>
@@ -22,7 +25,7 @@
     // ------------------------------------------------------------------------
     // hacky way to get the frame's current status code
     const status =
-      frame.contentWindow.performance.getEntriesByType("navigation")[0]
+      frame.contentWindow.performance.getEntriesByType('navigation')[0]
         ?.responseStatus;
 
     console.log(frame.contentWindow.location.href, status);
@@ -33,8 +36,11 @@
     }
     // ------------------------------------------------------------------------
 
-    document.querySelector(frame.contentWindow.location.hash || ':not(*)')
-      ?.replaceWith(...frame.contentDocument.body.children);
+    setTimeout(() =>
+      document
+        .querySelector(frame.contentWindow.location.hash || ":not(*)")
+        ?.replaceWith(...frame.contentDocument.body.children)
+    );
   }
 </script>
-<iframe hidden name="htmz" onload="window.htmz(this)"></iframe>
+<iframe hidden name=htmz onload="window.htmz(this)"></iframe>

@@ -66,10 +66,12 @@ ul {
 }
 
 .todo-item-content {
+  order: 2;
   flex: 1 1 auto;
 }
 
 .todo-item-save {
+  order: 3;
   margin: 0.25rem;
   opacity: 0;
 }
@@ -79,6 +81,7 @@ ul {
 }
 
 .todo-item-clear {
+  order: 1;
   margin: 0.5rem;
   aspect-ratio: 1;
   background: none;
@@ -95,8 +98,7 @@ ul {
   background: none;
   color: inherit;
 }
-.todo-item-clear:hover ~ .todo-item-content,
-.todo-item-clear:focus-visible ~ .todo-item-content {
+.todo-item:has(.todo-item-clear:hover, .todo-item-clear:focus-visible) .todo-item-content {
   opacity: 0.4;
   text-decoration: line-through;
 }

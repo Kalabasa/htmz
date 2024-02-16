@@ -41,13 +41,14 @@ button:focus-visible {
 }
 .month-control h2 {
   font-size: 1rem;
-  font-weight: normal;
+  font-weight: bold;
   margin: 0;
   margin-inline-end: auto;
 }
 .month-control a {
   flex: 0 1 6ch;
   text-align: end;
+  font-weight: bold;
   color: inherit;
 }
 

@@ -16,4 +16,4 @@
   <slot id="create-slot"></slot>
 </ul>
 
-<?php include '../../htmz.dev.html' ?>
+<?php include '../../htmz.html' ?>

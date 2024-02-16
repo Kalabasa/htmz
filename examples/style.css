@@ -10,8 +10,7 @@ h1 {
   font-size: 1.2rem;
   font-weight: bold;
 }
-
-a {
+h2 {
+  font-size: 1.05rem;
   font-weight: bold;
-  padding-inline-end: 1ch;
 }

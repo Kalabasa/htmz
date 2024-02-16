@@ -1,14 +1,20 @@
-<link rel="stylesheet" href="style.css" />
 <base target="htmz" />
+<link rel="stylesheet" href="style.css" />
 
 <h1>tabs</h1>
 
+<p>This is a simple tabbed UI example. Click on any of the tabs below.</p>
+
+<p>The structure is very similar to an <a href="iframe.html" target="_blank">iframe implementation</a>, except now the container can have a dynamic size and the content uses the same context and styles as the main page.</p>
+
+<p>Back navigation & history works. Because these are native HTML links (&lt;a&gt;) that work normally. No listeners, no JS, no hijacking of normal web browser web browsing.</p>
+
 <div role="tablist">
-  <a target="htmz" href="dog.html#my-tab-panel">Dog</a>
-  <a target="htmz" href="cat.html#my-tab-panel">Cat</a>
-  <a target="htmz" href="horse.html#my-tab-panel">Horse</a>
+  <a class="tab" href="dog.html#my-tab-panel">Dog</a>
+  <a class="tab" href="cat.html#my-tab-panel">Cat</a>
+  <a class="tab" href="horse.html#my-tab-panel">Horse</a>
 </div>
 
 <slot id="my-tab-panel" role="tabpanel"></slot>
 
-<iframe hidden name="htmz" onload="window!=this.contentWindow&&document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.children)"></iframe>
+<iframe hidden name=htmz onload="window!=this.contentWindow&&setTimeout(()=>document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.childNodes))"></iframe>

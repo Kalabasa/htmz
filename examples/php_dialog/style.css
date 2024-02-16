@@ -2,8 +2,8 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
   margin: 20vh auto;
   max-width: 60ch;
-  background: #fff4ff;
-  color: #313;
+  background: #fffff4;
+  color: #331;
 }
 
 h1 {
@@ -11,17 +11,24 @@ h1 {
   font-weight: bold;
 }
 
-.tab {
-  display: inline-block;
-  margin-inline-end: 0.25rem;
-  padding: 0.5rem 1rem;
-  border: solid 1px #313;
-  border-bottom: none;
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
+
+button {
+  border: none;
+  background: #651;
+  color: white;
+  font: inherit;
+  font-weight: bold;
+  border-radius: 0.25rem;
+}
+button:hover, button:focus-visible {
+  background: #763;
 }
 
-[role="tabpanel"] {
-  padding: 1rem;
-  border: solid 1px currentColor;
+dialog {
+  z-index: 1;
+}
+
+form {
+  display: inline-block;
+  margin: 0;
 }

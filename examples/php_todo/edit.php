@@ -12,12 +12,6 @@ $html_id = "todo-{$id}";
     method="post"
   >
     <input name="id" type="hidden" value="<?= $id ?>">
-    <button
-      class="todo-item-clear"
-      formaction="clear.php#<?= $html_id ?>"
-      aria-label="Clear">
-      ✔
-    </button>
     <input
       class="todo-item-content"
       name="content"
@@ -26,5 +20,11 @@ $html_id = "todo-{$id}";
       pattern=".+"
     >
     <button class="todo-item-save">save</button>
+    <button
+      class="todo-item-clear"
+      formaction="clear.php#<?= $html_id ?>"
+      aria-label="Clear">
+      ✔
+    </button>
   </form>
 </li>

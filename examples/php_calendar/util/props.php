@@ -1,7 +1,7 @@
 <?php
 // Lightweight PHP componentization helper
 // * Using these helpers, each php script becomes a component with a defined props interface.
-// * Components can be rendered programmatically or via HTTP request.
+// * Components can be rendered synchronously (programmatically) or async via HTTP request.
 // * To programmatically render a component, call `render`.
 // * To render a component via HTTP, load the php resource, passing props as GET or POST parameters.
 

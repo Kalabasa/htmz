@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-php -S localhost:8080 -t . &
+php -S localhost:3000 -t . &
+node node_chat &
 wait

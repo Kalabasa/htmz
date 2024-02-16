@@ -1,0 +1,132 @@
+<base target="htmz" />
+
+<h1>no ajax no fetch chat</h1>
+
+<p>Chat application without AJAX or fetch. It uses long polling to get real-time updates.</p>
+
+<p>Open this page on a new browser window to test.</p>
+
+<form action="chat#new-messages">
+  <div class="messages-scroll">
+    <div class="messages">
+      <div id="new-messages">
+        <a class="join-link" href="chat?join=1#new-messages">join chatroom</a>
+      </div>
+      <div class="scroll-anchor"></div>
+    </div>
+  </div>
+  <div class="input-box">
+    <label for="author">nickname</label>
+    <input name="author" required />
+    <div></div>
+    <label for="text">message</label>
+    <input name="text" required>
+    <button>send</button>
+  </div>
+</form>
+
+<iframe
+  hidden
+  name="htmz"
+  onload="console.log(this.contentDocument.body.innerHTML);window!=this.contentWindow&&document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.childNodes);return false"
+></iframe>
+
+<style>
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, avenir next,
+      avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto,
+      noto, arial, sans-serif;
+    margin: 20vh auto;
+    max-width: 60ch;
+    background: #f4f4ff;
+    color: #014;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  input,
+  button {
+    border: none;
+    color: inherit;
+    font: inherit;
+  }
+  input {
+    background: none;
+    border-bottom: solid 1px currentColor;
+  }
+  input:focus-visible {
+    outline: solid 1px #014;
+  }
+  button {
+    background: #126;
+    color: white;
+    font-weight: bold;
+    border-radius: 0.25rem;
+  }
+  button:hover,
+  button:focus-visible {
+    background: #348;
+  }
+
+  .messages-scroll {
+    width: 100%;
+    height: 16rem;
+    overflow: auto;
+    border: solid 1px currentColor;
+  }
+  .messages {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: end;
+  }
+  #new-messages {
+    overflow-anchor: none;
+    width: 100%;
+    flex: 1 1 auto;
+  }
+  .scroll-anchor {
+    overflow-anchor: auto;
+    height: 1px;
+  }
+
+  .join-link {
+    display: block;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .message {
+    overflow-anchor: none;
+    display: inline-block;
+    margin-inline-start: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: solid 1px #dde;
+    background: #eef;
+  }
+  .message-author {
+    font-weight: bold;
+    color: #126;
+    opacity: 0.6;
+  }
+
+  .input-box {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .input-box > * {
+    padding: 0.25rem;
+  }
+  [name="text"] {
+    resize: none;
+    border: solid 1px currentColor;
+  }
+</style>

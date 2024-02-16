@@ -4,8 +4,11 @@
 
     // Write your extensions here
 
-    document.querySelector(frame.contentWindow.location.hash || ':not(*)')
-      ?.replaceWith(...frame.contentDocument.body.children);
+    setTimeout(() =>
+      document
+        .querySelector(frame.contentWindow.location.hash || ":not(*)")
+        ?.replaceWith(...frame.contentDocument.body.children)
+    );
   }
 </script>
-<iframe hidden name="htmz" onload="window.htmz(this)"></iframe>
+<iframe hidden name=htmz onload="window.htmz(this)"></iframe>

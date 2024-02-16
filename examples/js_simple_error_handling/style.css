@@ -11,11 +11,6 @@ h1 {
   font-weight: bold;
 }
 
-a {
-  font-weight: bold;
-  padding-inline-end: 1ch;
-}
-
 img {
   width: 256px;
   height: 256px;
