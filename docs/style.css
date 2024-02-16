@@ -72,7 +72,8 @@ h3 {
 .heading-icon {
   margin: 0 1rem;
   float: right;
-  text-shadow: 0 1px 0 currentColor, 1px 1px 0 currentColor;
+  text-shadow: 0 0 1px currentColor, 0 -1px 0 currentColor, 0 1px 0 currentColor,
+    -1px 0 0 currentColor, 1px 0 0 currentColor;
 }
 
 p,

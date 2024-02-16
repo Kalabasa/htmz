@@ -35,7 +35,7 @@
         </p>
       </div>
       <div>
-        <h2>minimal<span class="heading-icon">➖</span></h2>
+        <h2>lightweight<span class="heading-icon">🪶</span></h2>
         <p>
           No client-side libraries to load. Not even a backend is required. All
           you need: your HTML content and a
@@ -43,7 +43,7 @@
         </p>
       </div>
       <div>
-        <h2>lightweight<span class="heading-icon">⚡</span></h2>
+        <h2>fast<span class="heading-icon">⚡</span></h2>
         <p>
           No sneaky dom listeners. No vdom overhead. No behind the scenes. No
           <i>let’s-override-then-recreate-normal-browser-behaviour</i> nonsense.
@@ -53,8 +53,8 @@
 
     <section class="examples-section">
       <p>
-        In a nutshell, <b>htmz</b> lets you load HTML resources into any part of
-        the page using vanilla HTML. Check out these examples!
+        <b>htmz</b> lets you load HTML resources into any part of the page using
+        vanilla HTML code. Check out these examples!
       </p>
       <div role="tablist">
         <a
@@ -62,6 +62,12 @@
           role="tab"
           href="examples/tabs/index.html#examples-tab-panel"
           >Tabs</a
+        >
+        <a
+          class="panel"
+          role="tab"
+          href="examples/dialog/index.html#examples-tab-panel"
+          >Dialog</a
         >
         <a class="panel" role="tab" target="_self" href="#examples"
           >More examples<sup>#</sup></a
@@ -87,6 +93,14 @@
         >, and other similar application architectures and implementations. It’s
         worth checking them out!
       </p>
+    </section>
+
+    <section>
+      <h2>Installing</h2>
+      <p>Simply copy the following snippet into your page.</p>
+      <pre
+        class="code"
+      ><code class="rainbow-mask">&lt;iframe hidden name=htmz onload="window!=this.contentWindow&&setTimeout(()=>document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.childNodes))">&lt;/iframe></code></pre>
     </section>
 
     <section>
@@ -119,14 +133,6 @@
         HTML resources within <del>any frame</del> <ins>any element</ins> in the
         page.
       </p>
-    </section>
-
-    <section>
-      <h2>Installing</h2>
-      <p>Simply copy the following snippet into your page.</p>
-      <pre
-        class="code"
-      ><code class="rainbow-mask">&lt;iframe hidden name=htmz onload="window!=this.contentWindow&&setTimeout(()=>document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.childNodes))">&lt;/iframe></code></pre>
     </section>
 
     <section>

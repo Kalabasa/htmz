@@ -1,0 +1,27 @@
+<div id="examples-tab-panel" class="panel" role="tabpanel">
+  <h2 class="examples-header">Code</h2>
+  <pre class="code"><code><!--
+-->&lt;base target=<span class="code-target">htmz</span>>
+&lt;p>Hello, user!&lt;/p>
+&lt;dialog id="<b>content</b>" open>
+  &lt;form action="<i>once.html</i><b>#content</b>">
+    &lt;p>Would you like to enable access?&lt;/p>
+    &lt;button>Just once&lt;/button>
+    &lt;button formaction="<i>always.html</i><b>#content</b>">Always&lt;/button>
+    &lt;button formmethod="dialog">Cancel&lt;/button>
+  &lt;/form>
+&lt;/dialog><!--
+--></code></pre>
+  <h2 class="examples-header">Result</h2>
+  <div class="example-result">
+    <p>Hello, user!</p>
+    <dialog id="content" open>
+      <form action="examples/dialog/once.html#content">
+        <p>Would you like to enable access?</p>
+        <button>Just once</button>
+        <button formaction="examples/dialog/always.html#content">Always</button>
+        <button formmethod="dialog">Cancel</button>
+      </form>
+    </dialog>
+  </div>
+</div>
