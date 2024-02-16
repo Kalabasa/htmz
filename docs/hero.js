@@ -54,9 +54,10 @@ const animate = async () => {
     ? randomItemFrom(listUINames)
     : randomItemFrom(singleUINames);
   const separator = Math.random() < 0.33 ? "" : Math.random() < 0.5 ? "_" : "-";
+  const formattedUIName = uiName && (separator ? uiName : uiName[0].toUpperCase() + uiName.slice(1));
 
   const resourceText = `${method} /${resourcePath}${pathExt}${pathSuffix}`;
-  const containerText = `#${resource}${uiName && separator}${separator ? uiName : uiName[0].toUpperCase() + uiName.slice(1)}`;
+  const containerText = `#${resource}${uiName && separator}${formattedUIName}`;
 
   heroSupports[0].textContent = resourceText;
   heroSupports[0].classList.add("entering");
