@@ -15,7 +15,7 @@ Simply copy the following snippet into your page.
 
 <!-- prettier-ignore-start -->
 ```html
-<iframe hidden name=htmz onload="window!=this.contentWindow&&setTimeout(()=>document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.childNodes))"></iframe>
+<iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.childNodes))"></iframe>
 ```
 <!-- prettier-ignore-end -->
 
@@ -25,6 +25,6 @@ htmz does one thing and one thing only.
 
 - Enable you to load HTML resources within _any element_ in the page.
 
-Imagine clicking a link, but instead of reloading the whole page, it only updates a relevant portion of the page. Think tabbed UIs, dual-pane list-detail layouts, dialogs, in-place editors, and the like. Imagine doing these things without having to write client-side scripts or mess with UI frameworks.
+Imagine clicking a link, but instead of reloading the whole page, it only updates a relevant portion of the page. Think tabbed UIs, dual-pane list-detail layouts, dialogs, in-place editors, and the like.
 
 **htmz is a generalisation of HTML frames.** &mdash; Load HTML resources within ~~any frame~~ _any element_ in the page.

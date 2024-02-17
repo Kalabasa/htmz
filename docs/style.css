@@ -235,7 +235,7 @@ pre.code {
 #examples-tab-panel {
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: max-content 1fr;
   align-content: center;
   gap: 0.25rem 1rem;
@@ -251,9 +251,16 @@ pre.code {
 }
 #examples-tab-panel .code {
   margin: 0;
-  min-height: 15rem;
   white-space: pre;
   overflow: auto;
+  max-width: none;
+}
+
+.examples-multi-code {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.25rem;
 }
 
 .example-result {

@@ -15,13 +15,14 @@
         >></span
       >
     </h1>
-    <i class="subtitle">a low power tool for html</i>
+    <i class="subtitle"> a low power tool for html </i>
 
     <section>
       <p>
         <b>htmz</b> is a simple tool that gives you the power to create dynamic
         web user interfaces with the familiar simplicity of
         <strong>vanilla HTML</strong>.
+        <a href="https://github.com/Kalabasa/htmz" target="_blank">[GitHub]</a>
       </p>
     </section>
 
@@ -53,8 +54,8 @@
 
     <section class="examples-section">
       <p>
-        <b>htmz</b> lets you load HTML resources into any part of the page using
-        vanilla HTML code. Check out these examples!
+        <b>htmz</b> lets you load HTML resources into any part of the page with
+        nothing but vanilla HTML code. Check out these demos!
       </p>
       <div role="tablist">
         <a
@@ -112,7 +113,19 @@
       <p>Simply copy the following snippet into your page.</p>
       <pre
         class="code"
-      ><code class="rainbow-mask">&lt;iframe hidden name=htmz onload="window!=this.contentWindow&&setTimeout(()=>document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.childNodes))">&lt;/iframe></code></pre>
+      ><code class="rainbow-mask">&lt;iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.childNodes))">&lt;/iframe></code></pre>
+      <p>Alternatively, if you insist on using the npm ecosystem:</p>
+      <pre class="code"><code><!--
+      -->npx htmz file/path/to/your/index.html<!--
+      --></code></pre>
+      <p>
+        For the development version (unminified), see github repo:
+        <a
+          href="https://github.com/Kalabasa/htmz/blob/master/htmz.dev.html"
+          target="_blank"
+          >github.com/Kalabasa/htmz/blob/master/htmz.dev.html</a
+        >
+      </p>
     </section>
 
     <section>
@@ -129,7 +142,7 @@
         only updates a relevant portion of the page. Think tabbed UIs, dual-pane
         list-detail layouts, dialogs, in-place editors, and the like. Imagine
         doing these things without having to write client-side scripts or mess
-        with UI frameworks.
+        with UI frameworks on top of HTML/JS.
       </p>
       <p>
         <em>This idea is not new.</em> Dividing web pages into independently
@@ -203,16 +216,16 @@
         If you need something more dynamic than the request-response model, use
         JavaScript. Try
         <a target="_blank" href="http://vanilla-js.com/">vanilla JS</a>, a great
-        match for vanilla HTML.
+        match.
       </p>
     </section>
 
     <section>
       <h2 id="examples">Examples</h2>
       <div class="examples-photo-grid">
-        <img alt="todo app" src="todo.png">
-        <img alt="chat app" src="chat.png">
-        <img class="calendar-screenshot" alt="calendar app" src="cal.png">
+        <img alt="todo app" src="todo.png" />
+        <img alt="chat app" src="chat.png" />
+        <img class="calendar-screenshot" alt="calendar app" src="cal.png" />
       </div>
       <p>
         More example applications and code in different languages can be found
@@ -236,11 +249,11 @@
           target="_blank"
           >base</a
         >
-        element, add <code>&lt;base target=htmz></code> at the top of your page
-        to set the default target for all relative links.
+        element, set htmz as the default target for all relative links. Add this
+        at the top of your page.
       </p>
       <pre class="code"><code><!--
--->&lt;base target<span class="code-target">=htmz></span><!--
+-->&lt;base target<b>=<span class="code-target">htmz</span>></b><!--
 --></code></pre>
     </section>
 
@@ -257,8 +270,6 @@
       <pre class="code wide"><code class="lang-html"><!--
 -->&lt;script>
   function htmz(frame) {
-    if (window === frame.contentWindow) return;
-
     <b>// Write your extensions here</b>
 
     <span class="code-comment">// Remove setTimeout to let the browser autoscroll content changes into view</span>
@@ -272,7 +283,7 @@
 &lt;iframe hidden name=htmz onload="htmz(this)">&lt;/iframe><!--
 --></code></pre>
       <p>
-        A number of extensions are available in the custom builder (coming
+        A number of extensions will be available in the custom builder (coming
         soon!).
       </p>
     </section>
@@ -348,7 +359,8 @@
           This started as a
           <i>
             “do I really need htmx? can’t I do the thing with current web?
-            what’s the minimal code I need to acheive this”
+            what’s the minimal code I need to achieve this particular
+            functionality”
           </i>
           and ended up with this.
         </p>
@@ -377,8 +389,8 @@
           libraries to enhance user interaction. You could, say, enhance a
           single form control with client-side scripting, but the form
           <em>values</em>
-          would still be submitted natively. It largely depends on the kind of
-          app and interactivity required.
+          would still be submitted as a regular form with htmz. It largely
+          depends on the kind of app and interactivity required.
         </p>
       </section>
     </section>
@@ -390,7 +402,7 @@
     </div>
 
     <!-- prettier-ignore -->
-    <iframe hidden name=htmz onload="window!=this.contentWindow&&setTimeout(()=>document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.childNodes))"></iframe>
+    <iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.childNodes))"></iframe>
 
     <script defer src="hero.js"></script>
   </body>

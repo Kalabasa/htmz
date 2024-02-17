@@ -1,13 +1,13 @@
 <div id="examples-tab-panel" class="panel" role="tabpanel">
   <h2 class="examples-header">Code</h2>
   <pre class="code"><code><!--
--->&lt;base target=<span class="code-target">htmz</span>>
+-->&lt;base target<b>=<span class="code-target">htmz</span>></b>
 &lt;p>Hello, user!&lt;/p>
 &lt;dialog id="<b>content</b>" open>
-  &lt;form action="<i>access?enable=once</i><b>#content</b>">
+  &lt;form action="<i>/access?enable=once</i><b>#content</b>">
     &lt;p>Would you like to enable access?&lt;/p>
     &lt;button>Just once&lt;/button>
-    &lt;button formaction="<i>access?enable=always</i><b>#content</b>">Always&lt;/button>
+    &lt;button formaction="<i>/access?enable=always</i><b>#content</b>">Always&lt;/button>
     &lt;button formmethod="dialog">Cancel&lt;/button>
   &lt;/form>
 &lt;/dialog><!--
