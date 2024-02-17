@@ -2,7 +2,10 @@
 
 <h1>no ajax no fetch chat</h1>
 
-<p>Chat application without AJAX or fetch. It uses long polling to get real-time updates.</p>
+<p>
+  Chat application without AJAX or fetch. It uses long polling to get real-time
+  updates.
+</p>
 
 <p>Open this page on a new browser window to test.</p>
 
@@ -20,16 +23,13 @@
     <input name="author" required />
     <div></div>
     <label for="text">message</label>
-    <input name="text" required>
+    <input name="text" required />
     <button>send</button>
   </div>
 </form>
 
-<iframe
-  hidden
-  name="htmz"
-  onload="console.log(this.contentDocument.body.innerHTML);window!=this.contentWindow&&document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.childNodes);return false"
-></iframe>
+<!-- prettier-ignore -->
+<iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.childNodes))"></iframe>
 
 <style>
   body {
@@ -98,7 +98,7 @@
     text-align: center;
     padding: 1rem;
   }
-  
+
   .message {
     overflow-anchor: none;
     display: inline-block;

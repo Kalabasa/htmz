@@ -4,10 +4,12 @@
 <h1>simple error handling</h1>
 
 <p>
-  The default behaviour for htmz is to put any response, including error pages, into the target.
+  The default behaviour for htmz is to put any response, including error pages,
+  into the target.
 </p>
 <p>
-  This example employs an htmz extension that intercepts and handles error responses generically.
+  This example employs an htmz extension that intercepts and handles error
+  responses generically.
 </p>
 <p>
   <a href="slide1.html#slide">Start slideshow!</a>
@@ -21,9 +23,10 @@
     // ------------------------------------------------------------------------
     // Simple error handling
     // ------------------------------------------------------------------------
+
     // hacky way to get the frame's current status code
     const status =
-      frame.contentWindow.performance.getEntriesByType('navigation')[0]
+      frame.contentWindow.performance.getEntriesByType("navigation")[0]
         ?.responseStatus;
 
     console.log(frame.contentWindow.location.href, status);
@@ -41,4 +44,4 @@
     );
   }
 </script>
-<iframe hidden name=htmz onload="window.htmz(this)"></iframe>
+<iframe hidden name="htmz" onload="window.htmz(this)"></iframe>

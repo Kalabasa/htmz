@@ -19,8 +19,8 @@
 
     <section>
       <p>
-        <b>htmz</b> is a simple tool that gives you the power to create dynamic
-        web user interfaces with the familiar simplicity of
+        <b>htmz</b> is a minimal HTML microframework that gives you the power to
+        create dynamic web user interfaces with the familiar simplicity of
         <strong>vanilla HTML</strong>.
         <a href="https://github.com/Kalabasa/htmz" target="_blank">[GitHub]</a>
       </p>
@@ -38,16 +38,17 @@
       <div>
         <h2>lightweight<span class="heading-icon">🪶</span></h2>
         <p>
-          No client-side libraries to load. Not even a backend is required. All
-          you need: your HTML content and a
-          <em>209-byte inline snippet</em>.
+          <strong>181 bytes in total.</strong> Zero dependencies. Zero JS
+          bundles to load. Not even a backend is strictly required.
+          <em>Just an inline HTML snippet</em>.
         </p>
       </div>
       <div>
-        <h2>fast<span class="heading-icon">⚡</span></h2>
+        <h2>immediate<span class="heading-icon">⚡</span></h2>
         <p>
-          No sneaky dom listeners. No vdom overhead. No behind the scenes. No
-          <i>let’s-override-then-recreate-normal-browser-behaviour</i> nonsense.
+          No layers. No behind the scenes. Real DOM, real interaction. No VDOM,
+          no click listeners. No
+          <i>recreate-browser-features-with-JS</i>.
         </p>
       </div>
     </section>
@@ -62,7 +63,7 @@
           class="panel"
           role="tab"
           href="examples/hello/index.html#examples-tab-panel"
-          >Hello world</a
+          >Hello world!</a
         >
         <a
           class="panel"
@@ -80,7 +81,7 @@
           class="panel"
           role="tab"
           href="examples/edit/index.html#examples-tab-panel"
-          >Edit in-place</a
+          >Edit inline</a
         >
         <a class="panel" role="tab" target="_self" href="#examples"
           >More examples<sup>#</sup></a
@@ -110,21 +111,98 @@
 
     <section>
       <h2>Installing</h2>
-      <p>Simply copy the following snippet into your page.</p>
+      <p>Simply copy the following snippet into your page:</p>
       <pre
         class="code"
       ><code class="rainbow-mask">&lt;iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.childNodes))">&lt;/iframe></code></pre>
-      <p>Alternatively, if you insist on using the npm ecosystem:</p>
+      <p>
+        <strong>Alternatively,</strong> if you insist on using the npm
+        ecosystem, I won’t stop you:
+      </p>
       <pre class="code"><code><!--
-      -->npx htmz file/path/to/your/index.html<!--
+-->npm install --save-dev htmz
+npx htmz ./file/path/to/your/index.html<!--
       --></code></pre>
       <p>
-        For the development version (unminified), see github repo:
+        For the <strong>development version</strong> (deminified), see GitHub
+        repo:
         <a
           href="https://github.com/Kalabasa/htmz/blob/master/htmz.dev.html"
           target="_blank"
           >github.com/Kalabasa/htmz/blob/master/htmz.dev.html</a
         >
+      </p>
+    </section>
+
+    <section>
+      <h2>How do you use it?</h2>
+      <p>
+        To invoke htmz, you need a hyperlink (or form) having these attributes:
+      </p>
+      <ul>
+        <li>
+          The href (or action) attribute pointing to the
+          <strong>resource URL</strong>
+          <code class="code"
+            >href="<span class="code-term">/flower.html</span>⋯</code
+          >
+        </li>
+        <li>
+          Also within the href: the
+          <strong>destination ID selector</strong> immediately after the URL
+          <code class="code"
+            >⋯<span class="code-attention">#my-container</span>"</code
+          >
+        </li>
+        <li>
+          And a <strong>target</strong> attribute with this value
+          <code class="code"
+            ><span class="code-target">target=<strong>htmz</strong></span></code
+          >
+        </li>
+      </ul>
+      <pre class="code"><code><!--
+--><span class="code-comment">&lt;!-- Loads /flower.html into #my-container --&gt;</span>
+&lt;a href="<i>/flower.html</i><b>#my-container</b>" <span class="code-target">target=<strong>htmz</strong></span>>Flower&lt;/a><!--
+--></code></pre>
+      <p>
+        This looks like an abuse of the URL fragment. And yes, it is. Is this
+        still vanilla HTML? Yep, it still is. Since there is no other use for
+        the URL fragment in this case, and it looks like a CSS ID selector, it
+        was repurposed as the destination ID selector.
+      </p>
+      <p>
+        What is <code>target=htmz</code>? This attribute tells the browser to
+        load the resource into htmz instead of loading it into the entire
+        window. A section below details
+        <a href="#how" target="_self">how htmz works<sup>#</sup></a
+        >.
+      </p>
+      <p>
+        <b>⚠ Important note:</b> The loaded content
+        <strong>replaces</strong> the selected destination. It may not be
+        intuitive at first, but htmz does not place the content
+        <em>inside</em> the destination. The rationale is that replacement is a
+        more powerful operation. With replacement, you can <i>replace</i>,
+        <i>delete</i> (replace with nothing), and <i>place-inside</i> (replace
+        with the same container as wrapper).
+      </p>
+      <p>
+        Naturally, only <code>&lt;a></code> and <code>&lt;form></code> elements
+        can target and invoke htmz (as of current HTML5). This is fine; it’s
+        semantic. Don’t forget the
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formaction"
+          target="_blank"
+          ><code>formaction</code></a
+        >
+        attribute, though!
+      </p>
+      <p>
+        If you need something more dynamic than the request-response model, you
+        may use JavaScript. Try
+        <a target="_blank" href="http://vanilla-js.com/">vanilla JS</a>, a great
+        match.
       </p>
     </section>
 
@@ -161,66 +239,6 @@
     </section>
 
     <section>
-      <h2>How do you use it?</h2>
-      <p>
-        To invoke htmz, you need a hyperlink (or form) having these attributes:
-      </p>
-      <ul>
-        <li>
-          The href (or action) attribute pointing to the
-          <strong>resource URL</strong>
-          <code class="code"
-            >href="<span class="code-term">/flower.html</span>⋯</code
-          >
-        </li>
-        <li>
-          Also within the href: the
-          <strong>destination ID selector</strong> immediately after the URL
-          <code class="code"
-            >⋯<span class="code-attention">#my-container</span>"</code
-          >
-        </li>
-        <li>
-          And a <strong>target</strong> attribute with this value
-          <code class="code"
-            ><span class="code-target">target=<strong>htmz</strong></span></code
-          >
-        </li>
-      </ul>
-      <pre class="code"><code><!--
---><span class="code-comment">&lt;!-- Loads /flower.html into #my-container --&gt;</span>
-&lt;a href="<i>/flower.html</i><b>#my-container</b>" <span class="code-target">target=<strong>htmz</strong></span>>Flower&lt;/a><!--
---></code></pre>
-      <p>
-        What is <code>target=htmz</code>? This attribute tells the browser to
-        load the resource into htmz instead of loading it into the entire
-        window. A section below details
-        <a href="#how" target="_self">how it works<sup>#</sup></a
-        >.
-      </p>
-      <p>
-        <b>Note:</b> The loaded content <strong>replaces</strong> the selected
-        destination. htmz doesn’t place the content <em>inside</em> the
-        destination, which may not be intuitive at first. The rationale is that
-        replacement is a more powerful operation. With replacement, you can
-        <i>replace</i>, <i>delete</i> (replace with nothing), and
-        <i>place-inside</i> (replace with the same container as wrapper).
-      </p>
-      <p>
-        Naturally, only <code>&lt;a></code> and <code>&lt;form></code> elements
-        can target and invoke htmz (as of current HTML5). This is fine; it’s
-        semantic. Don’t forget the &lt;button> with its
-        <code>formaction</code> attribute!
-      </p>
-      <p>
-        If you need something more dynamic than the request-response model, use
-        JavaScript. Try
-        <a target="_blank" href="http://vanilla-js.com/">vanilla JS</a>, a great
-        match.
-      </p>
-    </section>
-
-    <section>
       <h2 id="examples">Examples</h2>
       <div class="examples-photo-grid">
         <img alt="todo app" src="todo.png" />
@@ -228,8 +246,8 @@
         <img class="calendar-screenshot" alt="calendar app" src="cal.png" />
       </div>
       <p>
-        More example applications and code in different languages can be found
-        in the
+        More example applications, componentization approaches, and code in
+        different languages can be found in the
         <code>/examples</code> directory. To start the example server:
       </p>
       <pre class="code"><code><!--

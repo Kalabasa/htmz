@@ -235,7 +235,7 @@ pre.code {
 #examples-tab-panel {
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
   grid-template-rows: max-content 1fr;
   align-content: center;
   gap: 0.25rem 1rem;
