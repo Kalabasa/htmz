@@ -2,6 +2,7 @@
   function htmz(frame) {
     // Write your extensions here
 
+    // Remove setTimeout to let the browser autoscroll content changes into view
     setTimeout(() =>
       document
         .querySelector(frame.contentWindow.location.hash || ":not(*)")

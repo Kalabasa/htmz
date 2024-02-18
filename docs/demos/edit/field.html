@@ -1,0 +1,25 @@
+<script>
+  const params = new URLSearchParams(location.search);
+  const id = params.get("id");
+  const value = params.get("value");
+  const save = params.get("save");
+
+  if (save) {
+    // static mode
+    document.write(`
+      <div id='${id}'>
+        <b>${value}</b>
+        <a href="demos/edit/field.html?id=${id}&value=${value}#${id}">
+          edit
+        </a>
+      </div>`);
+  } else {
+    // edit mode
+    document.write(`
+      <form id='${id}' action='demos/edit/field.html#${id}'>
+        <input hidden name='id' value='${id}'>
+        <input name='value' value='${value}'>
+        <button name="save" value="save">save</button>
+      </form>`);
+  }
+</script>

@@ -1,0 +1,25 @@
+<div id="demos-tab-panel" class="panel" role="tabpanel">
+  <h2 class="demo-header">HTML</h2>
+  <pre class="code"><code><!--
+-->&lt;base target<b>=<span class="code-target">htmz</span>></b>
+
+<span class="code-comment">&lt;!-- Loads static HTML into #my-tab-panel --&gt;</span>
+&lt;div role="tablist">
+  &lt;a role="tab" href="<i>/dog.html</i><b>#my-tab-panel</b>">Dog&lt;/a> |
+  &lt;a role="tab" href="<i>/cat.html</i><b>#my-tab-panel</b>">Cat&lt;/a> |
+  &lt;a role="tab" href="<i>/horse.html</i><b>#my-tab-panel</b>">Horse&lt;/a>
+&lt;/div>
+
+<span class="code-comment">&lt;!-- This will be replaced by the loaded HTML --&gt;</span>
+&lt;slot id="<b>my-tab-panel</b>" role="tabpanel">&lt;/slot><!--
+--></code></pre>
+  <h2 class="demo-header">Result</h2>
+  <div class="demo-result">
+    <div role="tablist">
+      <a role="tab" href="demos/tabs/dog.html#my-tab-panel">Dog</a> |
+      <a role="tab" href="demos/tabs/cat.html#my-tab-panel">Cat</a> |
+      <a role="tab" href="demos/tabs/horse.html#my-tab-panel">Horse</a>
+    </div>
+    <slot id="my-tab-panel" role="tabpanel"></slot>
+  </div>
+</div>

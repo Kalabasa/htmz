@@ -1,8 +1,13 @@
-<div id="examples-tab-panel" class="panel" role="tabpanel">
-  <h2 class="examples-header">Code</h2>
+<div id="demos-tab-panel" class="panel" role="tabpanel">
+  <h2 class="demo-header">HTML</h2>
   <pre class="code"><code><!--
 -->&lt;base target<b>=<span class="code-target">htmz</span>></b>
+
 &lt;p>Hello, user!&lt;/p>
+
+<span class="code-comment">&lt;!-- Self-closing dialog:
+     The dialog will be replaced by the response
+     triggered by the form inside it. --&gt;</span>
 &lt;dialog id="<b>content</b>" open>
   &lt;form>
     &lt;p>Would you like to enable access to zlorgonium caches?&lt;/p>
@@ -26,21 +31,21 @@
   &lt;/form>
 &lt;/dialog><!--
 --></code></pre>
-  <h2 class="examples-header">Result</h2>
-  <div class="example-result">
+  <h2 class="demo-header">Result</h2>
+  <div class="demo-result">
     <p>Hello, user!</p>
     <dialog id="content" open>
       <form>
         <p>Would you like to enable access to zlorgonium caches?</p>
         <button
-          formaction="examples/dialog/once.html#content"
+          formaction="demos/dialog/once.html#content"
           name="enable"
           value="once"
         >
           Just once
         </button>
         <button
-          formaction="examples/dialog/always.html#content"
+          formaction="demos/dialog/always.html#content"
           name="enable"
           value="always"
         >

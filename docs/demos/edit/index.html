@@ -1,0 +1,92 @@
+<div id="demos-tab-panel" class="panel" role="tabpanel">
+  <h2 class="demo-header">HTML</h2>
+  <div class="demo-multi-code">
+    <pre class="code"><code><!--
+-->&lt;base target<b>=<span class="code-target">htmz</span>></b>
+
+<span class="code-comment">&lt;!-- Clicking the 'edit' link replaces the static text
+     with an editable field component provided by /field --&gt;</span>
+&lt;label>
+  Title:
+  &lt;div id="<b>title</b>">
+    &lt;b>The Seven Bits&lt;/b>
+    &lt;a href="<i>/field?id=title&value=The Seven Bits</i><b>#title</b>">edit&lt;/a>
+  &lt;/div>
+&lt;/label>
+
+&lt;label>
+  Genre:
+  &lt;div id="<b>genre</b>">
+    &lt;b>Horror&lt;/b>
+    &lt;a href="<i>/field?id=genre&value=Horror</i><b>#genre</b>">edit&lt;/a>
+  &lt;/div>
+&lt;/label>
+
+&lt;label>
+  Description:
+  &lt;div id="<b>description</b>">
+    &lt;b>Seven ate nine.&lt;/b>
+    &lt;a href="<i>/field?id=description&value=Seven ate nine.</i><b>#description</b>">edit&lt;/a>
+  &lt;/div>
+&lt;/label><!--
+--></code></pre>
+    <h2 class="demo-header">
+      NodeJS backend <code class="code code-term">/field</code>
+    </h2>
+    <pre class="code"><code><!--
+--><span class="code-comment">// This field component toggles between static / edit mode
+// by replacing itself when 'edit' / 'save' is clicked.</span>
+if (request.query.save) {
+  <span class="code-comment">// Static mode</span>
+  response.send(<span class="code-template">`
+    &lt;div id='<b>${request.query.id}</b>'>
+      &lt;b></span>${request.query.value}<span class="code-template">&lt;/b>
+      &lt;a href="<i>/field?id=${request.query.id}&value=${request.query.value}</i><b>#${request.query.id}</b>">
+        edit
+      &lt;/a>
+    &lt;/div>
+  `</span>);
+} else {
+  <span class="code-comment">// Edit mode</span>
+  response.send(<span class="code-template">`
+    &lt;form id="<b>${request.query.id}</b>" action="<i>/field</i><b>#${request.query.id}</b>">
+      &lt;input hidden name="id" value="</span>${request.query.id}<span class="code-template">">
+      &lt;input name="value" value="</span>${request.query.value}<span class="code-template">">
+      &lt;button name="save" value="save">save&lt;/button>
+    &lt;/form>
+  `</span>);
+}</span><!--
+--></code></pre>
+  </div>
+  <h2 class="demo-header">Result</h2>
+  <div class="demo-result">
+    <label>
+      Title:
+      <div id="title">
+        <b>The Seven Bits</b>
+        <a href="demos/edit/field.html?id=title&value=The Seven Bits#title"
+          >edit</a
+        >
+      </div>
+    </label>
+
+    <label>
+      Genre:
+      <div id="genre">
+        <b>Horror</b>
+        <a href="demos/edit/field.html?id=genre&value=Horror#genre">edit</a>
+      </div>
+    </label>
+
+    <label>
+      Description:
+      <div id="description">
+        <b>Seven ate nine.</b>
+        <a
+          href="demos/edit/field.html?id=description&value=Seven ate nine.#description"
+          >edit</a
+        >
+      </div>
+    </label>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div id="demos-tab-panel" class="panel" role="tabpanel">
+  <h2 class="demo-header">HTML</h2>
+  <div class="demo-multi-code">
+    <pre class="code"><code><!--
+--><span class="code-comment">&lt;!-- Sends form data to /greeting,
+     putting the response into #result --&gt;</span>
+&lt;form action="<i>/greeting</i><b>#result</b>" target<b>=<span class="code-target">htmz</span>></b>
+  &lt;label>
+    What’s your name?
+    &lt;input name="name">
+  &lt;/label>
+  &lt;button>Greet me&lt;/button>
+&lt;/form>
+
+<span class="code-comment">&lt;!-- This will be replaced by /greeting's response --&gt;</span>
+&lt;slot id="<b>result</b>">&lt;/slot><!--
+--></code></pre>
+    <h2 class="demo-header">
+      PHP backend <code class="code code-term">/greeting</code>
+    </h2>
+    <pre class="code"><code><!--
+--><span class="code-template">&lt;p id="result">
+  Hello, </span>&lt;?= $_REQUEST['name'] ?><span class="code-template">
+&lt;/p></span><!--
+--></code></pre>
+  </div>
+  <h2 class="demo-header">Result</h2>
+  <div class="demo-result">
+    <form action="demos/hello/greeting.html#result">
+      <label>What’s your name? <input name="name" /></label>
+      <button>Greet me</button>
+    </form>
+    <slot id="result"></slot>
+  </div>
+</div>
