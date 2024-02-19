@@ -1,7 +1,7 @@
 class ElementHandler {
   element(element) {
     element.after(
-      `<iframe hidden name="#${element.getAttribute('id')}" onload="console.log(window.name,this.contentWindow.location.toString(),this.name, this.contentDocument.body.childNodes);this.contentWindow.location.href!=='about:blank'&&document.querySelector(this.name).replaceWith(...this.contentDocument.body.childNodes)"></iframe>`,
+      `<iframe hidden name="#${element.getAttribute('id')}" onload="window.htmz?.(this)"></iframe>`,
       { html: true }
     );
   }

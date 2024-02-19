@@ -15,3 +15,12 @@
 </div>
 
 <div id="my-tab-panel" role="tabpanel"></div>
+
+<script>
+  function htmz(frame) {
+    if (frame.contentWindow.location.href === "about:blank") return;
+    document
+      .querySelector(frame.name)
+      .replaceWith(...frame.contentDocument.body.childNodes);
+  }
+</script>

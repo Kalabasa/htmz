@@ -192,9 +192,7 @@ npx htmzify ./path/to/my/index.html<!--
       </p>
       <p>
         Think tabbed UIs, dual-pane list-detail layouts, dialogs, in-place
-        editors, and the like. With htmz, you can do these things without having
-        to write client-side scripts or mess with UI frameworks on top of
-        HTML/JS.
+        editors, and the like.
       </p>
       <p>
         <em>This idea is not new.</em> Dividing web pages into independently
@@ -209,6 +207,10 @@ npx htmzify ./path/to/my/index.html<!--
         <strong>htmz is a generalisation of HTML frames.</strong> &mdash; Load
         HTML resources within <del>any frame</del> <ins>any element</ins> in the
         page.
+      </p>
+      <p>
+        Read more on <a href="#how" target="self">how it works</a> in a section
+        below.
       </p>
     </section>
 
@@ -306,8 +308,6 @@ npx htmzify ./path/to/my/index.html<!--
         </p>
         <pre class="code wide"><code class="lang-html"><!--
 -->&lt;iframe hidden name="<b>#my-element</b>" onload="window.htmz(this)">&lt;/iframe>
-
-<span class="code-comment">&lt;!-- Slightly modified htmz snippet --&gt;</span>
 &lt;script>
   function htmz(frame) {
     document
@@ -322,10 +322,14 @@ npx htmzify ./path/to/my/index.html<!--
           have clean target values wherever you want.
         </p>
         <p>
-          It might be tempting to automate the addition of matching iframes by
-          continually parsing the DOM looking for elements with IDs. But that is
-          nearing JS framework territory, at which point you might as well use
-          direct DOM manipulation in JS.
+          You can event
+          <a
+            href="https://github.com/Kalabasa/htmz/blob/master/examples/cf_clean_target_tabs/worker.js"
+            target="_blank"
+            >automate the generation of matching iframes</a
+          >
+          by continually parsing the DOM looking for elements with IDs. But that
+          is nearing JS framework territory.
         </p>
       </section>
 
@@ -338,18 +342,12 @@ npx htmzify ./path/to/my/index.html<!--
           designed to make HTML interactive.
         </p>
         <p>
-          Core htmz will not implement advanced interactions, lest it fall into
-          the trap of feature creep (such as adding a completely new syntax for
-          every new use-case).
-        </p>
-        <p>
           htmz does not preclude you writing JS or using UI libraries to enhance
-          user interaction. You could, say, enhance a single form control with
+          interaction. You could, say, enhance a single form control with
           <a href="http://vanilla-js.com/" target="_blank">vanillaJS</a>, but
           the form
           <em>values</em>
-          could still be submitted as a regular HTTP form with htmz. It largely
-          depends on the kind of interactivity required.
+          could still be submitted as a regular HTTP form with htmz.
         </p>
         <p>That said, htmz is extensible!</p>
       </section>
