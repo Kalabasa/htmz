@@ -39,7 +39,7 @@
       <div>
         <h2>lightweight<span class="heading-icon">🪶</span></h2>
         <p>
-          <strong>181 bytes in total.</strong> Zero dependencies. Zero JS
+          <strong>176 bytes in total.</strong> Zero dependencies. Zero JS
           bundles to load. Not even a backend is required.
           <em>Just an inline HTML snippet</em>.
         </p>
@@ -115,7 +115,7 @@
       <p>Simply copy the following snippet into your page:</p>
       <pre
         class="code"
-      ><code class="rainbow-mask">&lt;iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.childNodes))">&lt;/iframe></code></pre>
+      ><code class="rainbow-mask">&lt;iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(this.contentWindow.location.hash||null)?.replaceWith(...this.contentDocument.body.childNodes))">&lt;/iframe></code></pre>
       <p>
         For <strong>npm enjoyers</strong>, the following npm commands automate
         the process of copying the snippet into your page:
@@ -371,7 +371,7 @@
     <span class="code-comment">// Remove setTimeout to let the browser autoscroll content changes into view</span>
     <span class="code-token">setTimeout</span>(() =>
       document
-        .<span class="code-token">querySelector</span>(frame.contentWindow.location.hash || <span class="code-template">":not(*)"</span>)
+        .<span class="code-token">querySelector</span>(frame.contentWindow.location.hash || <span class="code-template">null</span>)
         ?.<span class="code-token">replaceWith</span>(...frame.contentDocument.body.children)
     );
   }

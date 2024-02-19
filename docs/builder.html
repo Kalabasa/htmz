@@ -64,7 +64,7 @@
     <span class="code-comment">// Remove setTimeout to let the browser autoscroll content changes into view</span>
     setTimeout(() =></span>
     <span class="code-no-autoscroll">  </span>document
-    <span class="code-no-autoscroll">  </span>  .querySelector(frame.contentWindow.location.hash || ":not(*)")
+    <span class="code-no-autoscroll">  </span>  .querySelector(frame.contentWindow.location.hash || null)
     <span class="code-no-autoscroll">  </span>  ?.replaceWith(...frame.contentDocument.body.children)<span class="code-no-autoscroll">
     );</span>
   }
