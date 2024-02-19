@@ -1,0 +1,10 @@
+<a href="https://example.com/" target="my-frame">Go</a>
+<iframe name="my-frame"></iframe>
+<button onclick="replace()">Replace</button>
+<script>
+  function replace() {
+    const iframe = document.createElement("iframe");
+    iframe.name = "my-frame";
+    document.querySelector("iframe").replaceWith(iframe);
+  }
+</script>

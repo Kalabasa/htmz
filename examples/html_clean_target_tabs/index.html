@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="style.css" />
+
+<h1>tabs</h1>
+
+<p>
+  tabs but with clean attribute values like<br />
+  <code>&lt;a href="dog.html" target="#my-tab-panel"></code>.
+</p>
+
+<div role="tablist">
+  <a class="tab" href="dog.html" target="#my-tab-panel">Dog</a>
+  <a class="tab" href="cat.html" target="#my-tab-panel">Cat</a>
+  <a class="tab" href="horse.html" target="#my-tab-panel">Horse</a>
+</div>
+
+<!-- The key is to add an iframe with a matching name to every destination -->
+<slot id="my-tab-panel" role="tabpanel"></slot>
+<iframe hidden name="#my-tab-panel" onload="window.htmz(this)"></iframe>
+
+<script>
+  function htmz(frame) {
+    document
+      .querySelector(frame.name) // use the iframe's name instead of the URL hash
+      ?.replaceWith(...frame.contentDocument.body.children);
+  }
+</script>

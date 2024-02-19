@@ -4,7 +4,8 @@ body {
     sans-serif;
   margin: 10vmin auto;
   padding: 0 1rem;
-  max-width: 120ch;
+  max-width: 80rem;
+  font-size: 1.034rem;
   line-height: 1.6;
   background: #f0f4f8;
   color: #237;
@@ -34,6 +35,44 @@ h3 {
   padding-inline-start: 0.5rem;
   border-inline-start: solid 0.125rem currentColor;
 }
+
+.stronger {
+  color: #e30;
+}
+
+p,
+ul,
+.code {
+  max-width: 40rem;
+}
+
+section {
+  margin: 4rem 0;
+}
+@media (max-width: 60rem) {
+  section {
+    margin: 3rem 0;
+  }
+}
+section section {
+  margin: 2rem 0;
+}
+section:has(:target):not(:has(section :target)) {
+  animation: flash 4s ease-in backwards;
+}
+@keyframes flash {
+  from {
+    background-image: linear-gradient(to right, #fec, transparent 50%);
+    background-size: 200% 100%;
+    background-position: 0 0;
+  }
+  to {
+    background-image: linear-gradient(to right, #fec, transparent 50%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+  }
+}
+
 
 .title {
   text-align: center;
@@ -68,44 +107,16 @@ h3 {
   }
 }
 
+.intro {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .heading-icon {
   margin: 0 1rem;
   float: right;
   text-shadow: 0 0 1px currentColor, 0 -1px 0 currentColor, 0 1px 0 currentColor,
     -1px 0 0 currentColor, 1px 0 0 currentColor;
-}
-
-p,
-ul,
-.code {
-  max-width: 60ch;
-}
-
-section {
-  margin: 4rem 0;
-}
-@media (max-width: 90ch) {
-  section {
-    margin: 3rem 0;
-  }
-}
-section section {
-  margin: 2rem 0;
-}
-section:has(:target):not(:has(section :target)) {
-  animation: flash 4s ease-in backwards;
-}
-@keyframes flash {
-  from {
-    background-image: linear-gradient(to right, #fec, transparent 50%);
-    background-size: 200% 100%;
-    background-position: 0 0;
-  }
-  to {
-    background-image: linear-gradient(to right, #fec, transparent 50%);
-    background-size: 200% 100%;
-    background-position: 100% 0;
-  }
 }
 
 .hero {
@@ -136,7 +147,7 @@ section:has(:target):not(:has(section :target)) {
   color: #0bd;
   transition: opacity 0.2s, color 0.2s;
 }
-@media (min-width: 90ch) {
+@media (min-width: 60rem) {
   .hero > .support {
     visibility: visible;
   }
@@ -237,11 +248,11 @@ pre.code {
   gap: 0.25rem 1rem;
   margin-top: 0.5rem;
   padding: 1rem;
-  min-height: 15rem;
+  min-height: 25rem;
 }
-@media (max-width: 120ch) {
+@media (max-width: 80rem) {
   #demos-tab-panel {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: max-content max-content max-content max-content;
   }
 }
@@ -268,6 +279,8 @@ pre.code {
 .demo-result {
   min-height: 15rem;
   background: white;
+  border: inset 2px #dde;
+  border-radius: 3px;
   color: black;
   overflow: auto;
 }
@@ -279,7 +292,7 @@ pre.code {
 .highlights-section > div {
   flex: 1 0;
 }
-@media (max-width: 90ch) {
+@media (max-width: 60rem) {
   .highlights-section {
     flex-direction: column;
   }
@@ -287,7 +300,6 @@ pre.code {
 
 .mission {
   padding: 1rem;
-  color: #08b;
 }
 
 @supports (background-clip: text) {
@@ -327,9 +339,9 @@ pre.code {
 .calendar-screenshot {
   grid-row: span 2;
 }
-@media (max-width: 120ch) {
+@media (max-width: 80rem) {
   .examples-photo-grid {
-    grid-template-columns: minmax(0, 40ch);
+    grid-template-columns: minmax(0, 32rem);
     grid-template-rows: repeat(4, min-content);
   }
 }

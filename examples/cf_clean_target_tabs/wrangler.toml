@@ -1,0 +1,4 @@
+name = "cf_clean_target_tabs"
+main = "worker.js"
+compatibility_date = "2024-02-18"
+

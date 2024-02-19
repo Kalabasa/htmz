@@ -1,0 +1,27 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+  margin: 20vh auto;
+  max-width: 60ch;
+  background: #fff4ff;
+  color: #313;
+}
+
+h1 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.tab {
+  display: inline-block;
+  margin-inline-end: 0.25rem;
+  padding: 0.5rem 1rem;
+  border: solid 1px #313;
+  border-bottom: none;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+[role="tabpanel"] {
+  padding: 1rem;
+  border: solid 1px currentColor;
+}

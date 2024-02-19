@@ -18,10 +18,10 @@
     <i class="subtitle"> a low power tool for html </i>
 
     <section>
-      <p>
-        <b>htmz</b> is a minimal HTML microframework that gives you the power to
+      <p class="intro">
+        <b>htmz</b> is a minimalist HTML microframework that gives you the power to
         create modular web user interfaces with the familiar simplicity of
-        <strong>vanilla HTML</strong>.
+        <strong class="stronger">vanilla HTML</strong>.
         <a href="https://github.com/Kalabasa/htmz" target="_blank">[GitHub]</a>
       </p>
     </section>
@@ -52,23 +52,43 @@
       </div>
     </section>
 
-    <section class="demos-section">
+    <section>
       <p>
         <b>In a nutshell, htmz</b> lets you load HTML resources into any part of
-        the page with nothing but vanilla HTML code. Imagine clicking a link,
-        but instead of reloading the whole page, it
+        the page using vanilla HTML code.
+      </p>
+      <p>
+        Imagine clicking a link, but instead of reloading the whole page, it
         <em>only updates the relevant portion of the page</em>.
       </p>
+      <p>
+        Inspired by
+        <a target="_blank" href="https://htmx.org/">htmx</a>,
+        <a
+          target="_blank"
+          href="https://en.wikipedia.org/wiki/Comet_(programming)"
+          >Comet</a
+        >, ‘HTML As The Engine Of Application State’<a
+          target="_blank"
+          href="https://en.wikipedia.org/wiki/HATEOAS"
+          >[1]</a
+        ><a target="_blank" href="https://htmx.org/essays/hateoas/">[2]</a>, and
+        other similar web application architectures.
+      </p>
+    </section>
+
+    <section class="demos-section">
+      <h2>Demos</h2>
       <p>Check out these demos to get an idea of what htmz can do!</p>
       <div role="tablist">
+        <a class="panel" role="tab" href="demos/tabs/index.html#demos-tab-panel"
+          >Tabs</a
+        >
         <a
           class="panel"
           role="tab"
           href="demos/hello/index.html#demos-tab-panel"
-          >Hello world!</a
-        >
-        <a class="panel" role="tab" href="demos/tabs/index.html#demos-tab-panel"
-          >Tabs</a
+          >Greeting</a
         >
         <a class="panel" role="tab" href="demos/edit/index.html#demos-tab-panel"
           >Edit inline</a
@@ -89,44 +109,26 @@
     </section>
 
     <section>
-      <p>
-        <b>htmz</b> was inspired by
-        <a target="_blank" href="https://htmx.org/">htmx</a>, HATEOAS<a
-          target="_blank"
-          href="https://en.wikipedia.org/wiki/HATEOAS"
-          >[1]</a
-        ><a target="_blank" href="https://htmx.org/essays/hateoas/">[2]</a>,
-        <a
-          target="_blank"
-          href="https://en.wikipedia.org/wiki/Comet_(programming)"
-          >Comet</a
-        >, and other similar application architectures and implementations. It’s
-        worth checking them out!
-      </p>
-    </section>
-
-    <section>
       <h2>Installing</h2>
       <p>Simply copy the following snippet into your page:</p>
       <pre
         class="code"
       ><code class="rainbow-mask">&lt;iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.childNodes))">&lt;/iframe></code></pre>
       <p>
-        <strong>Alternatively,</strong> if you do insist on using the npm
-        ecosystem, the following npm commands automate the process of copying
-        the snippet into your page:
+        For <strong>npm enjoyers</strong>, the following npm commands automate
+        the process of copying the snippet into your page:
       </p>
       <pre class="code"><code><!--
 -->npm install --save-dev htmz
 npx htmzify ./path/to/my/index.html<!--
       --></code></pre>
       <p>
-        For the <strong>development version</strong> (deminified), see GitHub
-        repo:
+        For <strong>hackers</strong>, you may start with the development version
+        (deminified):
         <a
           href="https://github.com/Kalabasa/htmz/blob/master/htmz.dev.html"
           target="_blank"
-          >github.com/Kalabasa/htmz/blob/master/htmz.dev.html</a
+          >htmz.dev.html</a
         >
       </p>
     </section>
@@ -148,7 +150,7 @@ npx htmzify ./path/to/my/index.html<!--
           Also within the href: the
           <strong>destination ID selector</strong> immediately after the URL
           <code class="code"
-            >⋯<span class="code-attention">#my-container</span>"</code
+            >⋯<span class="code-attention">#my-element</span>"</code
           >
         </li>
         <li>
@@ -159,23 +161,23 @@ npx htmzify ./path/to/my/index.html<!--
         </li>
       </ul>
       <pre class="code"><code><!--
---><span class="code-comment">&lt;!-- Loads /flower.html onto #my-container --&gt;</span>
-&lt;a href="<i>/flower.html</i><b>#my-container</b>" <span class="code-target">target=<strong>htmz</strong></span>>Flower&lt;/a><!--
+--><span class="code-comment">&lt;!-- Loads /flower.html onto #my-element --&gt;</span>
+&lt;a href="<i>/flower.html</i><b>#my-element</b>" <span class="code-target">target=<strong>htmz</strong></span>>Flower&lt;/a><!--
 --></code></pre>
       <p>
         While this looks like an abuse of the URL fragment (it is), there is no
-        other use for the URL fragment when the response is already an HTML
-        fragment, so it was repurposed as the destination ID selector. And it
-        already looks like a CSS ID selector.
+        other use for the URL fragment in this context, so it was repurposed as
+        the destination ID selector. And it already looks like a CSS ID
+        selector.
       </p>
       <p>
         <b>⚠ Important note:</b> The loaded content
         <strong>replaces</strong> the selected destination. It may not be
-        intuitive at first, but htmz does not place the content
-        <em>inside</em> the destination. The rationale is that replacement is a
-        more powerful operation. With replacement, you can <i>replace</i>,
-        <i>delete</i> (replace with nothing), and <i>place-inside</i> (replace
-        with the same container as wrapper).
+        intuitive at first, but htmz does <em>not</em> insert the content into
+        the destination. The rationale is that replacement is a more powerful
+        operation. With replacement, you can <i>replace</i>,
+        <i>delete</i> (replace with nothing), and <i>insert-into</i> (replace
+        with the same container as original).
       </p>
     </section>
 
@@ -183,7 +185,7 @@ npx htmzify ./path/to/my/index.html<!--
       <h2>What does it do exactly?</h2>
       <p>htmz does one thing and one thing only.</p>
       <p class="mission">
-        <strong>
+        <strong class="stronger">
           Enable you to load HTML resources within <em>any element</em> in the
           page.
         </strong>
@@ -237,6 +239,7 @@ npx htmzify ./path/to/my/index.html<!--
         semantic, after all. However, HTML offers a couple more features that
         work well with htmz.
       </p>
+
       <section>
         <h3>Per-button action & target</h3>
         <p>
@@ -266,7 +269,7 @@ npx htmzify ./path/to/my/index.html<!--
       </section>
 
       <section>
-        <h3>Base target</h3>
+        <h3>Base target value</h3>
         <p>Tired of adding <code>target=htmz</code> to every link and form?</p>
         <p>
           Using the
@@ -281,6 +284,49 @@ npx htmzify ./path/to/my/index.html<!--
         <pre class="code"><code><!--
 -->&lt;base target<b>=<span class="code-target">htmz</span>></b><!--
 --></code></pre>
+      </section>
+
+      <section>
+        <h3>Clean target values</h3>
+        <p>
+          Don’t like the look of <code>target=htmz</code> at all? Prefer using
+          the real target as the value?
+        </p>
+        <p>
+          We can do a hack that enables you to write clean link attributes like
+          this:
+        </p>
+        <pre class="code"><code><!--
+--><span class="code-comment">&lt;!-- Loads /flower.html onto #my-element --&gt;</span>
+&lt;a href="<i>/flower.html</i>" target="<b>#my-element</b>">Flower&lt;/a><!--
+--></code></pre>
+        <p>
+          The key is to add an iframe with a matching name, and modify the htmz
+          snippet to support this.
+        </p>
+        <pre class="code wide"><code class="lang-html"><!--
+-->&lt;iframe hidden name="<b>#my-element</b>" onload="window.htmz(this)">&lt;/iframe>
+
+<span class="code-comment">&lt;!-- Slightly modified htmz snippet --&gt;</span>
+&lt;script>
+  function htmz(frame) {
+    document
+      .querySelector(frame.name) <span class="code-comment">// use the iframe's name instead of the URL hash</span>
+      ?.replaceWith(...frame.contentDocument.body.children);
+  }
+&lt;/script>
+<!--
+--></code></pre>
+        <p>
+          Now, add a matching iframe to every possible destination and you can
+          have clean target values wherever you want.
+        </p>
+        <p>
+          It might be tempting to automate the addition of matching iframes by
+          continually parsing the DOM looking for elements with IDs. But that is
+          nearing JS framework territory, at which point you might as well use
+          direct DOM manipulation in JS.
+        </p>
       </section>
 
       <section>
@@ -316,8 +362,13 @@ npx htmzify ./path/to/my/index.html<!--
         not; the hero is here to save the day. The hero is you.
       </p>
       <p>
-        Here’s a development version of the snippet. Feel free to hack and
-        extend according to your needs. You’re a programmer, right?
+        Here’s
+        <a
+          href="https://github.com/Kalabasa/htmz/blob/master/htmz.dev.html"
+          target="_blank"
+          >the development version of the snippet</a
+        >. Feel free to hack and extend according to your needs. You’re a
+        programmer, right?
       </p>
       <pre class="code wide"><code class="lang-html"><!--
 -->&lt;script>
@@ -358,15 +409,15 @@ npx htmzify ./path/to/my/index.html<!--
         <pre class="code"><code><!--
 --><span class="code-comment">&lt;!--
   the main idea
-    /flower.html => #my-container
+    /flower.html => #my-element
 --&gt;</span>
-&lt;a href="<i>/flower.html</i>" target="<b>#my-container</b>">Flower&lt;/a>
+&lt;a href="<i>/flower.html</i>" target="<b>#my-element</b>">Flower&lt;/a>
 
 <span class="code-comment">&lt;!--
   actual code
-    /flower.html =htmz> #my-container
+    /flower.html =htmz> #my-element
 --&gt;</span>
-&lt;a href="<i>/flower.html</i><b>#my-container</b>" <span class="code-target">target=<strong>htmz</strong></span>>Flower&lt;/a><!--
+&lt;a href="<i>/flower.html</i><b>#my-element</b>" <span class="code-target">target=<strong>htmz</strong></span>>Flower&lt;/a><!--
 --></code></pre>
         <p>
           When you load a URL into the htmz iframe, the onload handler kicks in.
