@@ -1,4 +1,4 @@
-class ElementHandler {
+class IFrameInjector {
   element(element) {
     element.append(
       `<iframe hidden name="#${element.getAttribute('id')}" onload="window.htmz?.(this)"></iframe>`,
@@ -12,6 +12,7 @@ export default {
     const url = new URL(req.url);
     url.host = "localhost:3000";
     const res = await fetch(new Request(url, req));
-    return new HTMLRewriter().on('[id]', new ElementHandler()).transform(res);
+    // For every element with an ID, inject an htmz iframe
+    return new HTMLRewriter().on('[id]', new IFrameInjector()).transform(res);
   }
 }
