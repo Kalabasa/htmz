@@ -2,7 +2,7 @@
 
 _a low power tool for html_
 
-<b>htmz</b> is a minimalist HTML microframework that gives you the power to create dynamic web user interfaces with the familiar simplicity of **vanilla HTML**.
+<b>htmz</b> is a minimalist HTML microframework that gives you the power to create dynamic web user interfaces with the familiar simplicity of **plain HTML**.
 
 Zero dependencies. Zero JS bundles to load. Not even a backend is required. Just a _181-byte inline snippet_.
 

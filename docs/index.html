@@ -19,9 +19,9 @@
 
     <section>
       <p class="intro">
-        <b>htmz</b> is a minimalist HTML microframework that gives you the power to
-        create modular web user interfaces with the familiar simplicity of
-        <strong class="stronger">vanilla HTML</strong>.
+        <b>htmz</b> is a minimalist HTML microframework that gives you the power
+        to create modular web user interfaces with the familiar simplicity of
+        <strong class="stronger">plain HTML</strong>.
         <a href="https://github.com/Kalabasa/htmz" target="_blank">[GitHub]</a>
       </p>
     </section>
@@ -138,17 +138,17 @@ npx htmzify ./path/to/my/index.html<!--
       <p>
         To invoke htmz, you need a hyperlink (or form) having these attributes:
       </p>
-      <ul>
+      <ol>
         <li>
-          The href (or action) attribute pointing to the
+          href (or action) pointing to the
           <strong>resource URL</strong>
           <code class="code"
             >href="<span class="code-term">/flower.html</span>⋯</code
           >
         </li>
         <li>
-          Also within the href: the
-          <strong>destination ID selector</strong> immediately after the URL
+          Continuing within the href:
+          <strong>destination ID selector</strong>
           <code class="code"
             >⋯<span class="code-attention">#my-element</span>"</code
           >
@@ -159,7 +159,7 @@ npx htmzify ./path/to/my/index.html<!--
             ><span class="code-target">target=<strong>htmz</strong></span></code
           >
         </li>
-      </ul>
+      </ol>
       <pre class="code"><code><!--
 --><span class="code-comment">&lt;!-- Loads /flower.html onto #my-element --&gt;</span>
 &lt;a href="<i>/flower.html</i><b>#my-element</b>" <span class="code-target">target=<strong>htmz</strong></span>>Flower&lt;/a><!--
