@@ -5,7 +5,7 @@
     // Remove setTimeout to let the browser autoscroll content changes into view
     setTimeout(() =>
       document
-        .querySelector(frame.contentWindow.location.hash || ":not(*)")
+        .querySelector(frame.contentWindow.location.hash || null)
         ?.replaceWith(...frame.contentDocument.body.children)
     );
   }
