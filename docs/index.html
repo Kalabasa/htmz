@@ -295,16 +295,16 @@
           the real target as the value?
         </p>
         <p>
-          We can do a hack that enables you to write clean link attributes like
-          this:
+          We can do a hack that enables you to write the target ID selector in
+          the target attribute itself! Like this:
         </p>
         <pre class="code"><code><!--
 --><span class="code-comment">&lt;!-- Loads /flower.html onto #my-element --&gt;</span>
-&lt;<span class="code-token">a href</span>="<i>/flower.html</i>" target="<b>#my-element</b>">Flower&lt;/<span class="code-token">a</span>><!--
+&lt;<span class="code-token">a href</span>="<i>/flower.html</i>" <span class="code-token">target</span>="<b>#my-element</b>">Flower&lt;/<span class="code-token">a</span>><!--
 --></code></pre>
         <p>
-          The key is to add an iframe with a matching name, and modify the htmz
-          snippet to support this.
+          The key is to add an iframe with a <em>matching name</em>, and modify
+          the htmz snippet accordingly.
         </p>
         <pre class="code wide"><code class="lang-html"><!--
 -->&lt;<span class="code-token">iframe hidden name</span>="<b>#my-element</b>" <span class="code-token">onload</span>="htmz(<span class="code-token">this</span>)">&lt;/<span class="code-token">iframe</span>>
@@ -321,10 +321,8 @@
           <a
             href="https://github.com/Kalabasa/htmz/blob/master/examples/cf_clean_target_tabs/worker.js"
             target="_blank"
-            >automate the generation of matching iframes</a
-          >
-          by continually parsing the DOM looking for elements with IDs. But that
-          is nearing JS framework territory.
+            >automate the generation of matching target iframes</a
+          >.
         </p>
       </section>
 
@@ -408,7 +406,7 @@
 
 <span class="code-comment">&lt;!-- Actual:
      GET /flower.html =htmz> #my-element        --&gt;</span>
-&lt;<span class="code-token">a href</span>="<i>/flower.html</i><b>#my-element</b>" <span class="code-token">target</span>=<strong class="code-target">htmz</strong></span>>Flower&lt;/<span class="code-token">a</span>><!--
+&lt;<span class="code-token">a href</span>="<i>/flower.html</i><b>#my-element</b>" <span class="code-token">target</span>=<strong class="code-target">htmz</strong>>Flower&lt;/<span class="code-token">a</span>><!--
 --></code></pre>
         <p>
           When you load a URL into the htmz iframe, the onload handler kicks in.
@@ -455,15 +453,21 @@
             “Do I really need htmx? Can’t I do the load-link-into-target thing
             with current web? Sounds a lot like frames.”
           </i>
-          and ended up with this. (There’s
-          <a href="https://github.com/vilgacx/aki" target="_blank">aki</a> but I
-          didn’t like its style)
+          and ended up with this.
         </p>
         <p>
-          I don’t know. The tool actually works somehow. It feels powerful for
-          its tiny size. It may even be called elegant in that sense. (But
-          really it’s the browser that’s doing the heavy lifting.) Nonetheless,
-          there are limitations.
+          So, it isn’t quite a joke, but a response to htmx. I wanted to try
+          htmx. The premise sounded great (<i
+            >Why should you only be able to replace the entire screen?</i
+          >), then I saw that it was 16kB of JavaScript. Huh. Then there’s
+          special syntax everywhere. Huh. I don’t want to learn a whole new set
+          of instructions and Turing-complete DSLs specific to those
+          instructions.
+        </p>
+        <p>
+          Regardless of joke status, htmz seems fine as a library. It feels
+          kinda powerful for its tiny size. (But really it’s the browser that’s
+          doing the heavy lifting!) Nonetheless, there are limitations.
         </p>
       </section>
 
