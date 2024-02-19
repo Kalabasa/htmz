@@ -29,7 +29,7 @@ function receivePastMessages(res) {
   res.end(html`
     <meta http-equiv="refresh" content="1; url=/node_chat/chat#new-messages">
     ${pastMessages.join('\n')}
-    <slot id="new-messages"></slot>
+    <div id="new-messages"></div>
   `);
 }
 
@@ -38,7 +38,7 @@ function receiveNextMessage(res) {
     res.end(html`
         <meta http-equiv="refresh" content="1; url=/node_chat/chat#new-messages">
         ${content}
-        <slot id="new-messages"></slot>
+        <div id="new-messages"></div>
       `);
     subscribers.delete(onMessage);
   };
