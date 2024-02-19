@@ -56,15 +56,15 @@
 
     <section>
       <p>
-        <b>In a nutshell, htmz</b> lets you swap page fragments with HTML from
-        the server using vanilla HTML code.
+        <b>In a nutshell, htmz</b> lets you swap page fragments using vanilla
+        HTML code.
       </p>
       <p>
         Imagine clicking a link, but instead of reloading the whole page, it
         <em>only updates the relevant portion of the page</em>.
       </p>
       <p>
-        Inspired by
+        htmz is an <em>experiment</em> inspired by
         <a target="_blank" href="https://htmx.org/">htmx</a>,
         <a
           target="_blank"
@@ -482,9 +482,14 @@
         </p>
         <p>
           A more general but classic limitation is the request-response model.
-          The Web 1.0 model. This might mean putting more UI logic in the web
-          server. This can be a good thing or a bad thing, as it can mean either
-          consolidation or fragmentation of UI logic, which respectively
+          The Web 1.0 model, and the baggage that comes with it. Like a
+          roundtrip delay on every interaction, a browser history entry on every
+          click, etc.
+        </p>
+        <p>
+          The Web 1.0 model might also mean putting more UI logic in the web
+          server. This can be a good thing or a bad thing, as it could either
+          lead to consolidation or fragmentation of UI logic, which respectively
           decreases or increases complexity. It really depends on your goal and
           style.
         </p>
@@ -498,7 +503,7 @@
     </div>
 
     <!-- prettier-ignore -->
-    <iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(this.contentWindow.location.hash||':not(*)')?.replaceWith(...this.contentDocument.body.childNodes))"></iframe>
+    <iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(this.contentWindow.location.hash||null)?.replaceWith(...this.contentDocument.body.childNodes))"></iframe>
 
     <script defer src="hero.js"></script>
   </body>
