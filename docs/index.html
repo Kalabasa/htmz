@@ -54,8 +54,8 @@
 
     <section>
       <p>
-        <b>In a nutshell, htmz</b> lets you load HTML resources into any part of
-        the page using vanilla HTML code.
+        <b>In a nutshell, htmz</b> lets you swap out parts of your UI with HTML
+        responses from the server using vanilla HTML code.
       </p>
       <p>
         Imagine clicking a link, but instead of reloading the whole page, it
@@ -119,8 +119,8 @@
         the process of copying the snippet into your page:
       </p>
       <pre class="code"><code><!--
--->npm install --save-dev htmz
-npx htmzify ./path/to/my/index.html<!--
+--><span class="code-token">npm install --save-dev</span> htmz
+<span class="code-token">npx</span> htmzify ./path/to/my/index.html<!--
       --></code></pre>
       <p>
         For <strong>hackers</strong>, you may start with the development version
@@ -143,7 +143,9 @@ npx htmzify ./path/to/my/index.html<!--
           href (or action) pointing to the
           <strong>resource URL</strong>
           <code class="code"
-            >href="<span class="code-term">/flower.html</span>⋯</code
+            ><span class="code-token">href</span>="<span class="code-term"
+              >/flower.html</span
+            >⋯</code
           >
         </li>
         <li>
@@ -162,7 +164,7 @@ npx htmzify ./path/to/my/index.html<!--
       </ol>
       <pre class="code"><code><!--
 --><span class="code-comment">&lt;!-- Loads /flower.html onto #my-element --&gt;</span>
-&lt;a href="<i>/flower.html</i><b>#my-element</b>" <span class="code-target">target=<strong>htmz</strong></span>>Flower&lt;/a><!--
+&lt;<span class="code-token">a href</span>="<i>/flower.html</i><b>#my-element</b>" <span class="code-target">target=<strong>htmz</strong></span>>Flower&lt;/<span class="code-token">a</span>><!--
 --></code></pre>
       <p>
         While this looks like an abuse of the URL fragment (it is), there is no
@@ -227,7 +229,7 @@ npx htmzify ./path/to/my/index.html<!--
         <code>/examples</code> directory. To start the example server:
       </p>
       <pre class="code"><code><!--
--->cd examples
+--><span class="code-token">cd</span> examples
 ./run_servers.sh<!--
 --></code></pre>
       <p>Then load <code>http://localhost:3000/</code>.</p>
@@ -256,17 +258,15 @@ npx htmzify ./path/to/my/index.html<!--
           attribute.
         </p>
         <pre class="code"><code><!--
--->&lt;form action="<i>/default</i><b>#my-target</b>" target<b>=<span class="code-target">htmz</span>></b>
-  &lt;button>
-    Default form action
-  &lt;/button>
-  &lt;button formaction="<i>/button</i><b>#my-target</b>">
+-->&lt;<span class="code-token">form action</span>="<i>/default</i><b>#my-target</b>" <span class="code-token">target</span><b>=<span class="code-target">htmz</span>></b>
+  &lt;<span class="code-token">button</span>>Default form action&lt;/<span class="code-token">button</span>>
+  &lt;<span class="code-token">button formaction</span>="<i>/button</i><b>#my-target</b>">
     Different button action
-  &lt;/button>
-  &lt;button formaction="<i>/another-action</i><b>#another-target</b>">
+  &lt;/<span class="code-token">button</span>>
+  &lt;<span class="code-token">button formaction</span>="<i>/another-action</i><b>#another-target</b>">
     Another action
-  &lt;/button>
-&lt;/form><!--
+  &lt;/<span class="code-token">button</span>>
+&lt;/<span class="code-token">form</span>><!--
 --></code></pre>
       </section>
 
@@ -284,7 +284,7 @@ npx htmzify ./path/to/my/index.html<!--
           this at the top of your page.
         </p>
         <pre class="code"><code><!--
--->&lt;base target<b>=<span class="code-target">htmz</span>></b><!--
+-->&lt;<span class="code-token">base target</span><b>=<span class="code-target">htmz</span>></b><!--
 --></code></pre>
       </section>
 
@@ -300,29 +300,24 @@ npx htmzify ./path/to/my/index.html<!--
         </p>
         <pre class="code"><code><!--
 --><span class="code-comment">&lt;!-- Loads /flower.html onto #my-element --&gt;</span>
-&lt;a href="<i>/flower.html</i>" target="<b>#my-element</b>">Flower&lt;/a><!--
+&lt;<span class="code-token">a href</span>="<i>/flower.html</i>" target="<b>#my-element</b>">Flower&lt;/<span class="code-token">a</span>><!--
 --></code></pre>
         <p>
           The key is to add an iframe with a matching name, and modify the htmz
           snippet to support this.
         </p>
         <pre class="code wide"><code class="lang-html"><!--
--->&lt;iframe hidden name="<b>#my-element</b>" onload="window.htmz(this)">&lt;/iframe>
-&lt;script>
-  function htmz(frame) {
-    document
-      .querySelector(frame.name) <span class="code-comment">// use the iframe's name instead of the URL hash</span>
-      ?.replaceWith(...frame.contentDocument.body.children);
+-->&lt;<span class="code-token">iframe hidden name</span>="<b>#my-element</b>" <span class="code-token">onload</span>="htmz(<span class="code-token">this</span>)">&lt;/<span class="code-token">iframe</span>>
+&lt;<span class="code-token">script</span>>
+  <span class="code-token">function</span> htmz(frame) {
+    document.<span class="code-token">querySelector</span>(frame.name) <span class="code-comment">// use the iframe's name instead of the URL hash</span>
+      ?.<span class="code-token">replaceWith</span>(...frame.contentDocument.body.children);
   }
-&lt;/script>
+&lt;/<span class="code-token">script</span>>
 <!--
 --></code></pre>
         <p>
-          Now, add a matching iframe to every possible destination and you can
-          have clean target values wherever you want.
-        </p>
-        <p>
-          You can event
+          You can even
           <a
             href="https://github.com/Kalabasa/htmz/blob/master/examples/cf_clean_target_tabs/worker.js"
             target="_blank"
@@ -369,19 +364,19 @@ npx htmzify ./path/to/my/index.html<!--
         programmer, right?
       </p>
       <pre class="code wide"><code class="lang-html"><!--
--->&lt;script>
-  function htmz(frame) {
+-->&lt;<span class="code-token">script</span>>
+  <span class="code-token">function</span> htmz(frame) {
     <b>// Write your extensions here</b>
 
     <span class="code-comment">// Remove setTimeout to let the browser autoscroll content changes into view</span>
-    setTimeout(() =>
+    <span class="code-token">setTimeout</span>(() =>
       document
-        .querySelector(frame.contentWindow.location.hash || ":not(*)")
-        ?.replaceWith(...frame.contentDocument.body.children)
+        .<span class="code-token">querySelector</span>(frame.contentWindow.location.hash || <span class="code-template">":not(*)"</span>)
+        ?.<span class="code-token">replaceWith</span>(...frame.contentDocument.body.children)
     );
   }
-&lt;/script>
-&lt;iframe hidden name=htmz onload="htmz(this)">&lt;/iframe><!--
+&lt;/<span class="code-token">script</span>>
+&lt;<span class="code-token">iframe hidden name</span>=<span class="code-target">htmz</span> <span class="code-token">onload</span>="htmz(<strong class="code-token">this</strong>)">&lt;/<span class="code-token">iframe</span>><!--
 --></code></pre>
       <p>
         A number of extensions will be available in the custom builder (coming
@@ -407,13 +402,13 @@ npx htmzify ./path/to/my/index.html<!--
           proxy target htmz forwards responses into some specified target.
         </p>
         <pre class="code"><code><!--
---><span class="code-comment">&lt;!-- The main idea:
+--><span class="code-comment">&lt;!-- The ideal:
      GET /flower.html => #my-element            --&gt;</span>
-&lt;a href="<i>/flower.html</i>" target="<b>#my-element</b>">Flower&lt;/a>
+&lt;<span class="code-token">a href</span>="<i>/flower.html</i>" <span class="code-token">target</span>="<b>#my-element</b>">Flower&lt;/<span class="code-token">a</span>>
 
 <span class="code-comment">&lt;!-- Actual:
      GET /flower.html =htmz> #my-element        --&gt;</span>
-&lt;a href="<i>/flower.html</i><b>#my-element</b>" <span class="code-target">target=<strong>htmz</strong></span>>Flower&lt;/a><!--
+&lt;<span class="code-token">a href</span>="<i>/flower.html</i><b>#my-element</b>" <span class="code-token">target</span>=<strong class="code-target">htmz</strong></span>>Flower&lt;/<span class="code-token">a</span>><!--
 --></code></pre>
         <p>
           When you load a URL into the htmz iframe, the onload handler kicks in.

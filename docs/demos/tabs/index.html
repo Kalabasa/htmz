@@ -1,17 +1,17 @@
 <div id="demos-tab-panel" class="panel" role="tabpanel">
   <h2 class="demo-header">HTML</h2>
   <pre class="code"><code><!--
--->&lt;base target<b>=<span class="code-target">htmz</span>></b>
+-->&lt;<span class="code-token">base target</span><b>=<span class="code-target">htmz</span>></b>
 
 <span class="code-comment">&lt;!-- Loads static HTML onto #my-tab-panel --&gt;</span>
-&lt;div role="tablist">
-  &lt;a role="tab" href="<i>/dog.html</i><b>#my-tab-panel</b>">Dog&lt;/a> |
-  &lt;a role="tab" href="<i>/cat.html</i><b>#my-tab-panel</b>">Cat&lt;/a> |
-  &lt;a role="tab" href="<i>/horse.html</i><b>#my-tab-panel</b>">Horse&lt;/a>
-&lt;/div>
+&lt;<span class="code-token">div role</span>="<span class="code-token">tablist</span>">
+  &lt;<span class="code-token">a role</span>="<span class="code-token">tab</span>" <span class="code-token">href</span>="<i>/dog.html</i><b>#my-tab-panel</b>">Dog&lt;/<span class="code-token">a</span>> |
+  &lt;<span class="code-token">a role</span>="<span class="code-token">tab</span>" <span class="code-token">href</span>="<i>/cat.html</i><b>#my-tab-panel</b>">Cat&lt;/<span class="code-token">a</span>> |
+  &lt;<span class="code-token">a role</span>="<span class="code-token">tab</span>" <span class="code-token">href</span>="<i>/horse.html</i><b>#my-tab-panel</b>">Horse&lt;/<span class="code-token">a</span>>
+&lt;/<span class="code-token">div</span>>
 
 <span class="code-comment">&lt;!-- This will be replaced by the loaded HTML --&gt;</span>
-&lt;slot id="<b>my-tab-panel</b>" role="tabpanel">&lt;/slot><!--
+&lt;<span class="code-token">slot id</span>="<b>my-tab-panel</b>" <span class="code-token">role</span>="<span class="code-token">tabpanel</span>">&lt;/<span class="code-token">slot</span>><!--
 --></code></pre>
   <h2 class="demo-header">Result</h2>
   <div class="demo-result">

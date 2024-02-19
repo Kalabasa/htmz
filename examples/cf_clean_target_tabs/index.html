@@ -19,8 +19,9 @@
 <script>
   function htmz(frame) {
     if (frame.contentWindow.location.href === "about:blank") return;
-    document
-      .querySelector(frame.name)
-      .replaceWith(...frame.contentDocument.body.childNodes);
+    // This transplants content via HTML strings because Chromium doesn't like
+    // passing iframes around apparently. The normal way works for Firefox.
+    document.querySelector(frame.name).outerHTML =
+      frame.contentDocument.body.innerHTML;
   }
 </script>

@@ -37,7 +37,7 @@ h3 {
 }
 
 .stronger {
-  color: #e30;
+  color: #d40;
 }
 
 p,
@@ -222,6 +222,9 @@ pre.code {
 }
 .code-template {
   color: #cfc;
+}
+.code-token {
+  color: #acf;
 }
 
 .demos-section > [role="tablist"] > [role="tab"] {

@@ -18,6 +18,12 @@
       .toggles:has(#toggle-multi:checked) ~ .code #code-multi {
         display: block;
       }
+      .toggles:has(#toggle-autoscroll:checked) ~ .code .code-no-autoscroll {
+        display: none;
+      }
+      .toggles {
+        display: grid;
+      }
     </style>
   </head>
   <body>
@@ -30,6 +36,10 @@
       <label>
         <input id="toggle-multi" type="checkbox" />
         Multiple targets
+      </label>
+      <label>
+        <input id="toggle-autoscroll" type="checkbox" />
+        Autoscroll
       </label>
       <label>
         <input id="toggle-untemplate" type="checkbox" disabled />
@@ -50,13 +60,13 @@
       document.getElementById(newElement.id)?.replaceWith(newElement);
     }
     <span class="code-comment">// ------------------------------------------------------------------------</span><!--
---></div>
+--></div><span class="code-no-autoscroll">
     <span class="code-comment">// Remove setTimeout to let the browser autoscroll content changes into view</span>
-    setTimeout(() =>
-      document
-        .querySelector(frame.contentWindow.location.hash || ":not(*)")
-        ?.replaceWith(...frame.contentDocument.body.children)
-    );
+    setTimeout(() =></span>
+    <span class="code-no-autoscroll">  </span>document
+    <span class="code-no-autoscroll">  </span>  .querySelector(frame.contentWindow.location.hash || ":not(*)")
+    <span class="code-no-autoscroll">  </span>  ?.replaceWith(...frame.contentDocument.body.children)<span class="code-no-autoscroll">
+    );</span>
   }
 &lt;/script>
 &lt;iframe hidden name=htmz onload="htmz(this)">&lt;/iframe><!--

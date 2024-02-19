@@ -4,16 +4,16 @@
     <pre class="code"><code><!--
 --><span class="code-comment">&lt;!-- Sends form data to /greeting,
      putting the response onto #result --&gt;</span>
-&lt;form action="<i>/greeting</i><b>#result</b>" target<b>=<span class="code-target">htmz</span>></b>
-  &lt;label>
+&lt;<span class="code-token">form action</span>="<i>/greeting</i><b>#result</b>" <span class="code-token">target</span><b>=<span class="code-target">htmz</span>></b>
+  &lt;<span class="code-token">label</span>>
     What’s your name?
-    &lt;input name="name">
-  &lt;/label>
-  &lt;button>Greet me&lt;/button>
-&lt;/form>
+    &lt;<span class="code-token">input name</span>="name">
+  &lt;/<span class="code-token">label</span>>
+  &lt;<span class="code-token">button</span>>Greet me&lt;/<span class="code-token">button</span>>
+&lt;/<span class="code-token">form</span>>
 
 <span class="code-comment">&lt;!-- This will be replaced by /greeting's response --&gt;</span>
-&lt;slot id="<b>result</b>">&lt;/slot><!--
+&lt;<span class="code-token">slot id</span>="<b>result</b>">&lt;/<span class="code-token">slot</span>><!--
 --></code></pre>
     <h2 class="demo-header">
       PHP backend <code class="code code-term">/greeting</code>

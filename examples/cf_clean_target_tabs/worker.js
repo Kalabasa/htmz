@@ -1,6 +1,6 @@
 class ElementHandler {
   element(element) {
-    element.after(
+    element.append(
       `<iframe hidden name="#${element.getAttribute('id')}" onload="window.htmz?.(this)"></iframe>`,
       { html: true }
     );
