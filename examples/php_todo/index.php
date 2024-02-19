@@ -13,7 +13,7 @@
 </form>
 
 <ul>
-  <slot id="create-slot"></slot>
+  <div id="create-slot"></div>
 </ul>
 
 <?php include '../../htmz.html' ?>

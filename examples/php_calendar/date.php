@@ -34,7 +34,7 @@ $events = array_filter(
       ]);
     }
     ?>
-    <slot id="<?= $create_slot_id ?>"></slot>
+    <div id="<?= $create_slot_id ?>"></div>
   </ul>
 
   <form
