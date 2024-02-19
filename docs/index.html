@@ -396,8 +396,10 @@ npx htmzify ./path/to/my/index.html<!--
         <h3 id="how">How does it work?</h3>
         <p>
           htmz is an iframe named &quot;htmz&quot;. You invoke htmz by loading a
-          URL into the iframe via target=htmz. It has an onload handler to
-          post-process the HTML resources you loaded.
+          URL into the iframe via target=htmz. By using an iframe, we lean on
+          the browser’s native capability to fetch the URL and parse the HTML.
+          After loading the HTML resource, we take the resulting DOM via an
+          onload handler.
         </p>
         <p>htmz is essentially a <strong>proxy target</strong>.</p>
         <p>
@@ -405,16 +407,12 @@ npx htmzify ./path/to/my/index.html<!--
           proxy target htmz forwards responses into some specified target.
         </p>
         <pre class="code"><code><!--
---><span class="code-comment">&lt;!--
-  the main idea
-    /flower.html => #my-element
---&gt;</span>
+--><span class="code-comment">&lt;!-- The main idea:
+     GET /flower.html => #my-element            --&gt;</span>
 &lt;a href="<i>/flower.html</i>" target="<b>#my-element</b>">Flower&lt;/a>
 
-<span class="code-comment">&lt;!--
-  actual code
-    /flower.html =htmz> #my-element
---&gt;</span>
+<span class="code-comment">&lt;!-- Actual:
+     GET /flower.html =htmz> #my-element        --&gt;</span>
 &lt;a href="<i>/flower.html</i><b>#my-element</b>" <span class="code-target">target=<strong>htmz</strong></span>>Flower&lt;/a><!--
 --></code></pre>
         <p>
