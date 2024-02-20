@@ -17,4 +17,4 @@
 
 <div id="my-tab-panel" role="tabpanel"></div>
 
-<iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(this.contentWindow.location.hash||null)?.replaceWith(...this.contentDocument.body.childNodes))"></iframe>
+<iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(contentWindow.location.hash||null)?.replaceWith(...contentDocument.body.childNodes))"></iframe>
