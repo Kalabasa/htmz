@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const fs = require("node:fs");
 
-const htmzSnippet = `<iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(contentWindow.location.hash||null)?.replaceWith(...contentDocument.body.childNodes))"></iframe>`;
+const htmzSnippet = `<iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(contentWindow.location.hash)?.replaceWith(...contentDocument.body.childNodes))"></iframe>`;
 
 if (process.argv.length < 3 || process.argv.length > 3 || process.argv[2].startsWith("-")) {
   console.error(`\

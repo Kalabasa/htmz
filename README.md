@@ -14,7 +14,7 @@ Simply copy the following snippet into your page.
 
 <!-- prettier-ignore-start -->
 ```html
-<iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(contentWindow.location.hash||null)?.replaceWith(...contentDocument.body.childNodes))"></iframe>
+<iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(contentWindow.location.hash)?.replaceWith(...contentDocument.body.childNodes))"></iframe>
 ```
 <!-- prettier-ignore-end -->
 
