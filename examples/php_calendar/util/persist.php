@@ -1,6 +1,6 @@
 <?php
 function load_calendar() {
-  $cookie = $_COOKIE['calendar'];
+  $cookie = $_COOKIE['calendar'] ?? null;
   if (isset($cookie)) return unserialize(base64_decode($cookie));
   return [];
 }
