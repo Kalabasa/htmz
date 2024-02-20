@@ -36,9 +36,9 @@
     <pre class="code"><code><!--
 --><span class="code-comment">// This field component toggles between static / edit mode
 // by replacing itself when 'edit' / 'save' is clicked.</span>
-if (request.query.save) {
+<span class="code-token">if</span> (request.query.save) {
   <span class="code-comment">// Static mode</span>
-  response.send(<span class="code-template">`
+  response.<span class="code-token">send</span>(<span class="code-template">`
     &lt;div id='<b>${request.query.id}</b>'>
       &lt;b></span>${request.query.value}<span class="code-template">&lt;/b>
       &lt;a href="<i>/field?id=${request.query.id}&value=${request.query.value}</i><b>#${request.query.id}</b>">
@@ -46,9 +46,9 @@ if (request.query.save) {
       &lt;/a>
     &lt;/div>
   `</span>);
-} else {
+} <span class="code-token">else</span> {
   <span class="code-comment">// Edit mode</span>
-  response.send(<span class="code-template">`
+  response.<span class="code-token">send</span>(<span class="code-template">`
     &lt;form id="<b>${request.query.id}</b>" action="<i>/field</i><b>#${request.query.id}</b>">
       &lt;input hidden name="id" value="</span>${request.query.id}<span class="code-template">">
       &lt;input name="value" value="</span>${request.query.value}<span class="code-template">">

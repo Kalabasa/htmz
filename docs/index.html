@@ -371,7 +371,7 @@
     <span class="code-comment">// Remove setTimeout to let the browser autoscroll content changes into view</span>
     <span class="code-token">setTimeout</span>(() =>
       document
-        .<span class="code-token">querySelector</span>(frame.contentWindow.location.hash || <span class="code-template">null</span>)
+        .<span class="code-token">querySelector</span>(frame.contentWindow.location.hash || <span class="code-token">null</span>)
         ?.<span class="code-token">replaceWith</span>(...frame.contentDocument.body.children)
     );
   }
