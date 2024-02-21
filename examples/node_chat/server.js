@@ -13,7 +13,7 @@ function listen(routes) {
     for (const [pathname, cb] of routes) {
       const reqURL = new URL(req.url, basename);
       if (reqURL.pathname === pathname) {
-        res.setHeader('Content-Type', 'text/html');
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
         res.statusCode = 200;
         cb(req, res);
         return;
