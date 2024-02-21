@@ -1,35 +1,70 @@
 #!/usr/bin/env node
-const fs = require("node:fs");
+import fs from "fs-extra";
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
+import { RewritingStream } from 'parse5-html-rewriting-stream';
+import ss from "stream-string";
 
-const htmzSnippet = `<iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(contentWindow.location.hash||null)?.replaceWith(...contentDocument.body.childNodes))"></iframe>`;
+const snippetHolder = [`<iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(contentWindow.location.hash||null)?.replaceWith(...contentDocument.body.childNodes))"></iframe>`];
 
-if (process.argv.length < 3 || process.argv.length > 3 || process.argv[2].startsWith("-")) {
-  console.error(`\
-Usage: npx htmz <path>
-Installs htmz into an HTML file.
+const args = yargs(hideBin(process.argv))
+  .scriptName("npx htmzify")
+  .example("npx htmzify src/index.html")
+  .command("$0 <path>", "Installs htmz into an HTML file", (yargs) => yargs
+    .positional("path", {
+      type: "string",
+      desc: "Path to the HTML file"
+    })
+    .option("nobak", {
+      type: "boolean",
+      desc: "Do not make a backup copy"
+    })
+  )
+  .parse()
 
-Example:
-  npx htmz src/index.html`);
-  process.exit(1);
+const filePath = args.path;
+
+let cancel = false;
+let prevIndent = "";
+let prevPrevIndent = "";
+const rewriter = new RewritingStream();
+
+rewriter.on("startTag", (startTag) => {
+  if (startTag.tagName === "iframe" && startTag.attrs.find(attr => attr.name === "name" && attr.value === "htmz")) {
+    cancel = true;
+    rewriter.stop();
+  }
+  rewriter.emitStartTag(startTag);
+});
+
+rewriter.on("text", (_, text) => {
+  const indents = [...text.matchAll(/[\n\r](\s*)/g)];
+  if (indents.length > 0) {
+    prevPrevIndent = prevIndent;
+    prevIndent = indents[indents.length - 1][1];
+  }
+  rewriter.emitRaw(text);
+});
+
+rewriter.on("endTag", (endTag) => {
+  if (snippetHolder.length && (endTag.tagName === "html" || endTag.tagName === "body")) {
+    rewriter.emitRaw(formatSnippet(snippetHolder.pop()));
+  }
+  rewriter.emitEndTag(endTag);
+});
+
+function formatSnippet(snippet) {
+  return prevPrevIndent.slice(prevIndent.length) + snippet + "\n" + prevIndent;
 }
 
-const filePath = process.argv[2];
-const source = fs.readFileSync(filePath).toString();
+const readStream = fs.createReadStream(filePath, { encoding: "utf-8" });
+let transformed = await ss(readStream.pipe(rewriter));
 
-if (source.includes(htmzSnippet)) return;
+if (cancel) process.exit(0);
 
-const sourceLowerCased = source.toLowerCase();
-const bodyClosingTagIndex = sourceLowerCased.lastIndexOf("</body>");
-const htmlClosingTagIndex = sourceLowerCased.lastIndexOf("</html>");
-const contentEndIndex =
-  bodyClosingTagIndex !== -1 ? bodyClosingTagIndex
-    : htmlClosingTagIndex !== -1 ? htmlClosingTagIndex
-      : source.length;
+if (snippetHolder.length) {
+  transformed += formatSnippet(snippetHolder.pop());
+}
 
-let trimmedContentEndIndex = contentEndIndex;
-while (" \t\n".includes(source[trimmedContentEndIndex - 1])) trimmedContentEndIndex--;
-
-const newSource = source.slice(0, contentEndIndex) + htmzSnippet + source.slice(trimmedContentEndIndex);
-
-fs.renameSync(filePath, filePath + ".bak");
-fs.writeFileSync(filePath, newSource);
+if (!args.nobak) fs.moveSync(filePath, filePath + ".bak", { overwrite: true });
+fs.writeFileSync(filePath, transformed);
