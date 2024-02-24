@@ -1,0 +1,64 @@
+<div id="extension-code">
+  <script>
+    function htmz(frame) {
+      // ---------------------------------8<-----------------------------------
+      // Loader
+      // ----------------------------------------------------------------------
+      // Watch for the 'unload' event as a proxy for load start.
+      // The initial about:blank page also counts when unloading.
+      frame.contentWindow.addEventListener("unload", () => {
+        // Wait for destination location
+        setTimeout(() => {
+          document
+            .querySelector(frame.contentWindow.location.hash || null)
+            ?.classList.add("loader");
+        });
+      });
+      // --------------------------------->8-----------------------------------
+
+      setTimeout(() => {
+        document
+          .querySelector(frame.contentWindow.location.hash || null)
+          ?.replaceWith(...frame.contentDocument.body.children);
+      });
+    }
+  </script>
+  <iframe
+    hidden
+    name="htmz"
+    onbeforeunload="window.beforeHtmz(this)"
+    onload="window.htmz(this)"
+  ></iframe>
+</div>
+
+<div id="extension-description">
+  <h2>loader</h2>
+  <p>
+    This extension applies a <code>.loader</code> CSS class to the target
+    element when a request starts, to indicate loading state.
+  </p>
+</div>
+
+<a href="content.html#content" target="htmz">Load content</a>
+<div id="content"></div>
+
+<style>
+  .loader {
+    width: 2rem;
+    height: 2rem;
+    border: 0.25rem solid #f0f;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: loader 1s linear infinite;
+  }
+
+  @keyframes loader {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+</style>
