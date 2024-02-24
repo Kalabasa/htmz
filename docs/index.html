@@ -10,8 +10,8 @@
   </head>
   <body>
     <h1 class="title">
-      <span class="decor title-arrow" aria-hidden>=></span>htmz<span
-        class="decor title-arrowhead"
+      <span class="title-decor title-arrow" aria-hidden>=></span>htmz<span
+        class="title-decor title-arrowhead"
         aria-hidden
         >></span
       >
@@ -108,6 +108,10 @@
       <div id="demos-tab-panel" class="panel" role="tabpanel">
         <div class="demos-empty">🐙 Select an example above!</div>
       </div>
+      <p>
+        See also:
+        <a href="extensions/" target="_self">Extensions 🍱</a>
+      </p>
     </section>
 
     <section>
@@ -408,7 +412,7 @@
 --></code></pre>
       <p>
         <strong>
-          Pre-written extensions are available in the
+          Pre-written extensions are now available in the
           <a href="extensions/" target="_self">Extensions 🍱 page</a>.
         </strong>
       </p>
@@ -526,15 +530,15 @@
       </section>
     </section>
 
-    <div class="hero">
+    <div class="footer">
       <span class="support" aria-hidden="true"></span>
-      <h1><span class="decor">=</span>htmz<span class="decor">></span></h1>
+      <h1><span class="title-decor">=</span>htmz<span class="title-decor">></span></h1>
       <span class="support" aria-hidden="true"></span>
     </div>
 
     <!-- prettier-ignore -->
     <iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(contentWindow.location.hash||null)?.replaceWith(...contentDocument.body.childNodes))"></iframe>
 
-    <script defer src="hero.js"></script>
+    <script defer src="footer.js"></script>
   </body>
 </html>

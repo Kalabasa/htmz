@@ -1,4 +1,4 @@
-// Hero animation generates fake URLs and fake containers
+// Footer animation generates fake URLs and fake containers
 
 // prettier-ignore
 const resources =
@@ -11,17 +11,17 @@ const listUINames = "list,grid,table".split(",");
 const singleUINames =
   ",container,row,item,box,overlay,preview,form,tooltip,toast,chip,tooltip,tabview,dropdown,card,modal,pane,panel,tabpanel,dataview,view".split(",");
 
-const hero = document.querySelector(".hero");
-const heroSupports = hero.querySelectorAll("& > .support");
+const footer = document.querySelector(".footer");
+const footerSupports = footer.querySelectorAll("& > .support");
 
 const animate = async () => {
-  heroSupports[0].textContent = "";
-  heroSupports[0].classList.remove("entering");
-  heroSupports[0].classList.add("exiting");
-  hero.classList.add("idle");
-  heroSupports[1].textContent = "";
-  heroSupports[1].classList.remove("entering");
-  heroSupports[1].classList.add("exiting");
+  footerSupports[0].textContent = "";
+  footerSupports[0].classList.remove("entering");
+  footerSupports[0].classList.add("exiting");
+  footer.classList.add("idle");
+  footerSupports[1].textContent = "";
+  footerSupports[1].classList.remove("entering");
+  footerSupports[1].classList.add("exiting");
   await wait(200);
 
   const plural = Math.random() < 0.5;
@@ -59,15 +59,15 @@ const animate = async () => {
   const resourceText = `${method} /${resourcePath}${pathExt}${pathSuffix}`;
   const containerText = `#${resource}${uiName && separator}${formattedUIName}`;
 
-  heroSupports[0].textContent = resourceText;
-  heroSupports[0].classList.add("entering");
-  heroSupports[0].classList.remove("exiting");
+  footerSupports[0].textContent = resourceText;
+  footerSupports[0].classList.add("entering");
+  footerSupports[0].classList.remove("exiting");
   await wait(400);
-  hero.classList.remove("idle");
+  footer.classList.remove("idle");
   await wait(100);
-  heroSupports[1].textContent = containerText;
-  heroSupports[1].classList.add("entering");
-  heroSupports[1].classList.remove("exiting");
+  footerSupports[1].textContent = containerText;
+  footerSupports[1].classList.add("entering");
+  footerSupports[1].classList.remove("exiting");
   await wait(1600);
   animate();
 };

@@ -15,7 +15,7 @@ body {
   box-sizing: border-box;
 }
 
-.hero,
+.footer,
 h1,
 h2,
 h3 {
@@ -74,18 +74,20 @@ section:has(:target):not(:has(section :target)) {
   }
 }
 
+.title-decor {
+  font-variant-ligatures: none;
+  opacity: 0.6;
+  color: #0bd;
+}
 
 .title {
   text-align: center;
   margin-bottom: 0;
 }
-.title .decor {
+.title .title-decor {
   display: inline-block;
   width: 2ch;
-  font-variant-ligatures: none;
   text-align: start;
-  opacity: 0.6;
-  color: #0bd;
 }
 .title-arrow {
   transform: translateX(50%);
@@ -121,7 +123,7 @@ section:has(:target):not(:has(section :target)) {
     -1px 0 0 currentColor, 1px 0 0 currentColor;
 }
 
-.hero {
+.footer {
   font-size: 2rem;
   display: grid;
   grid-template-columns: minmax(0, 1fr) min-content minmax(0, 1fr);
@@ -130,39 +132,36 @@ section:has(:target):not(:has(section :target)) {
   white-space: nowrap;
   overflow: hidden;
 }
-.hero > .support {
+.footer > .support {
   display: flex;
   justify-content: end;
   opacity: 0.3;
   font-size: 55%;
   visibility: hidden;
 }
-.hero > .support ~ .support {
+.footer > .support ~ .support {
   justify-content: start;
 }
-.hero > h1 {
+.footer > h1 {
   margin: 0;
   display: inline-block;
 }
-.hero .decor {
-  font-variant-ligatures: none;
-  opacity: 0.6;
-  color: #0bd;
+.footer .title-decor {
   transition: opacity 0.2s, color 0.2s;
 }
 @media (min-width: 60rem) {
-  .hero > .support {
+  .footer > .support {
     visibility: visible;
   }
-  .hero.idle .decor {
+  .footer.idle .title-decor {
     opacity: 0.3;
     color: inherit;
   }
 }
-.hero .support.entering {
+.footer .support.entering {
   animation: heroSupportEntering 0.3s both ease-out;
 }
-.hero .support.exiting {
+.footer .support.exiting {
   animation: heroSupportExiting 0.3s both ease-in;
 }
 @keyframes heroSupportEntering {

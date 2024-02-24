@@ -7,10 +7,10 @@
         // ----------------------------------------------------------------------
         // This extension unwraps standalone top-level <template> tags
         frame.contentDocument
-          .querySelectorAll("head > template") // solo template tags default to head
-          .forEach((template) => {
-            frame.contentDocument.body.append(template.content);
-          });
+          .querySelectorAll("head>template") // solo root template tags default to head
+          .forEach((template) =>
+            frame.contentDocument.body.append(template.content)
+          );
         // --------------------------------->8-----------------------------------
 
         document
@@ -31,7 +31,7 @@
     sending tr on its own is illegal.
   </p>
   <p>
-    The native way to hold HTML fragments is the
+    The native solution to represent HTML fragments is the
     <a
       href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template"
       target="_blank"
@@ -41,8 +41,8 @@
     legally inside a template tag.
   </p>
   <p>
-    This extension facilitates the above approach by unwrapping top-level
-    template elements in the response.
+    This extension facilitates the above approach by unwrapping a top-level
+    template element in the response.
   </p>
 </div>
 
