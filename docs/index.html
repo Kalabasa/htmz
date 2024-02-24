@@ -532,7 +532,9 @@
 
     <div class="footer">
       <span class="support" aria-hidden="true"></span>
-      <h1><span class="title-decor">=</span>htmz<span class="title-decor">></span></h1>
+      <h1>
+        <span class="title-decor">=</span>htmz<span class="title-decor">></span>
+      </h1>
       <span class="support" aria-hidden="true"></span>
     </div>
 
@@ -540,5 +542,9 @@
     <iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(contentWindow.location.hash||null)?.replaceWith(...contentDocument.body.childNodes))"></iframe>
 
     <script defer src="footer.js"></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/gh/Kalabasa/analytics/analytics.js"
+    ></script>
   </body>
 </html>
