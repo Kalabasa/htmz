@@ -1,0 +1,71 @@
+<div id="extension-code">
+  <script>
+    function htmz(frame) {
+      setTimeout(() => {
+        // ---------------------------------8<-----------------------------------
+        // Unwrap <template>
+        // ----------------------------------------------------------------------
+        // This extension unwraps standalone top-level <template> tags
+        frame.contentDocument
+          .querySelectorAll("head > template") // solo template tags default to head
+          .forEach((template) => {
+            frame.contentDocument.body.append(template.content);
+          });
+        // --------------------------------->8-----------------------------------
+
+        document
+          .querySelector(frame.contentWindow.location.hash || null)
+          ?.replaceWith(...frame.contentDocument.body.children);
+      });
+    }
+  </script>
+  <iframe hidden name="htmz" onload="window.htmz(this)"></iframe>
+</div>
+
+<div id="extension-description">
+  <h2>unwrap-template</h2>
+  <p>
+    Certain HTML elements have restrictions on what type of parent element they
+    can be in. For example, a <code>&lt;tr></code> requires a
+    <code>&lt;table></code> parent [or a <i>t(head|body|foot)</i>]. Simply
+    sending tr on its own is illegal.
+  </p>
+  <p>
+    The native way to hold HTML fragments is the
+    <a
+      href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template"
+      target="_blank"
+      ><code>&lt;template></code></a
+    >
+    tag. Elements that would otherwise be illegal on their own can be parsed
+    legally inside a template tag.
+  </p>
+  <p>
+    This extension facilitates the above approach by unwrapping top-level
+    template elements in the response.
+  </p>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Foo</th>
+      <th>Bar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr id="next-rows">
+      <td colspan="2">
+        <a href="rows.html#next-rows" target="htmz">Load rows</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<style>
+  td,
+  th {
+    padding: 0.25em;
+    border: solid 1px lightgray;
+  }
+</style>

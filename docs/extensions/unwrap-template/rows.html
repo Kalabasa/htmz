@@ -1,0 +1,28 @@
+<script>
+  const page = parseInt(new URL(location).searchParams.get("page") ?? 0);
+  document.write(`
+<template>
+  <tr>
+    <td>Data ${page * 3}</td>
+    <td>Value ${page * 3}</td>
+  </tr>
+  <tr>
+    <td>Data ${page * 3 + 1}</td>
+    <td>Value ${page * 3 + 1}</td>
+  </tr>
+  <tr>
+    <td>Data ${page * 3 + 2}</td>
+    <td>Value ${page * 3 + 2}</td>
+  </tr>
+  <tr id="next-rows">
+    <td colspan="2">
+      <a
+        href="rows.html?page=${page + 1}#next-rows"
+        target="htmz"
+      >
+        Load rows
+      </a>
+    </td>
+  </tr>
+</template>`);
+</script>

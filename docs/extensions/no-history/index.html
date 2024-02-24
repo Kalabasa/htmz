@@ -1,0 +1,35 @@
+<div id="extension-code">
+  <script>
+    function htmz(frame) {
+      // ---------------------------------8<-----------------------------------
+      // No history
+      // ----------------------------------------------------------------------
+      // This extension clears the iframe's history from the global history
+      // by removing the iframe from the DOM (but immediately adding it back
+      // for subsequent requests).
+      if (frame.contentWindow.location.href === "about:blank") return;
+      // --------------------------------->8-----------------------------------
+      setTimeout(() => {
+        document
+          .querySelector(frame.contentWindow.location.hash || null)
+          ?.replaceWith(...frame.contentDocument.body.children);
+        // ---------------------------------8<-----------------------------------
+        frame.remove();
+        document.body.appendChild(frame);
+        // --------------------------------->8-----------------------------------
+      });
+    }
+  </script>
+  <iframe hidden name="htmz" onload="window.htmz(this)"></iframe>
+</div>
+
+<div id="extension-description">
+  <h2>no-history</h2>
+  <p>
+    This extension prevents history entries from being made for htmz requests.
+  </p>
+</div>
+
+<a href="dog.html#content" target="htmz">Load dog</a>.
+<a href="cat.html#content" target="htmz">Load cat</a>.
+<div id="content"></div>

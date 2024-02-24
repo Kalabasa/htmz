@@ -1,0 +1,57 @@
+<div id="extension-code">
+  <script>
+    function htmz(frame) {
+      setTimeout(() => {
+        // ---------------------------------8<-----------------------------------
+        // Multitarget (a.k.a out of band updates)
+        // ----------------------------------------------------------------------
+        // As the HTML spec says that element IDs must be unique,
+        // this extension replaces elements that have corresponding elements in
+        // the response with the same IDs.
+        const mainTargetConsumed = !!frame.contentDocument.querySelector(
+          frame.contentWindow.location.hash || null
+        );
+        const elements = [...frame.contentDocument.querySelectorAll("[id]")];
+        // reverse order so we extract children before parents
+        for (const element of elements.reverse()) {
+          document.getElementById(element.id)?.replaceWith(element);
+        }
+        if (mainTargetConsumed) return;
+        // --------------------------------->8-----------------------------------
+
+        document
+          .querySelector(frame.contentWindow.location.hash || null)
+          ?.replaceWith(...frame.contentDocument.body.children);
+      });
+    }
+  </script>
+  <iframe hidden name="htmz" onload="window.htmz(this)"></iframe>
+</div>
+
+<div id="extension-description">
+  <h2>multitarget</h2>
+  <p>
+    This extension allows you to target multiple elements in a single request.
+  </p>
+</div>
+
+<a href="content.html#content" target="htmz">Load content</a>
+<div id="content"></div>
+<div id="alert"></div>
+
+<style>
+  #alert:not(:empty) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    background: #afa;
+    animation: alert 0.5s cubic-bezier(0.4, 1.5, 0.4, 1);
+  }
+  @keyframes alert {
+    from {
+      transform: scale(0.0001);
+    }
+  }
+</style>

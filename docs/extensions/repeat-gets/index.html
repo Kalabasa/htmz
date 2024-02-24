@@ -1,0 +1,33 @@
+<div id="extension-code">
+  <script>
+    function htmz(frame) {
+      // ---------------------------------8<-----------------------------------
+      // Repeat GETs
+      // ----------------------------------------------------------------------
+      // This extension clears the iframe URL for a fresh start on next load
+      if (frame.contentWindow.location.href === "about:blank") return;
+      // --------------------------------->8-----------------------------------
+      setTimeout(() => {
+        document
+          .querySelector(frame.contentWindow.location.hash || null)
+          ?.replaceWith(...frame.contentDocument.body.children);
+        // ---------------------------------8<-----------------------------------
+        frame.contentWindow.location.replace("about:blank");
+        // --------------------------------->8-----------------------------------
+      });
+    }
+  </script>
+  <iframe hidden name="htmz" onload="window.htmz(this)"></iframe>
+</div>
+
+<div id="extension-description">
+  <h2>repeat-gets</h2>
+  <p>
+    Normally, browsers cache GET requests to the same URL in an iframe. This
+    extension allows you to skip that behavior and make repeated GET requests to
+    the same URL.
+  </p>
+</div>
+
+<a href="content.html#content" target="htmz">Load content</a>
+<div id="content"></div>

@@ -29,8 +29,6 @@
       frame.contentWindow.performance.getEntriesByType("navigation")[0]
         ?.responseStatus;
 
-    console.log(frame.contentWindow.location.href, status);
-
     if (status && (status < 200 || status > 299)) {
       alert(frame.contentWindow.document.title);
       return;
