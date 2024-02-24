@@ -19,11 +19,16 @@
 <script>
   function htmz(frame) {
     if (frame.contentWindow.location.href === "about:blank") return;
-    // This transplants content via HTML strings because Chromium doesn't like
-    // passing iframes around apparently even those from the same origin.
-    // The usual replaceWith() works with Firefox!
-    // This breaks a lot of built-in goodies like browser history :(
-    document.querySelector(frame.name).outerHTML =
-      frame.contentDocument.body.innerHTML;
+    const duplicates = document.getElementsByName(frame.name);
+
+    document
+      .querySelector(frame.name)
+      ?.replaceWith(...frame.contentDocument.body.children);
+
+    // Workaround to Chrome bug:
+    // Chrome can't handle iframes being inside the replaced target, but Firefox can.
+    // Since the HTML rewriter inserts the matching iframe outside the target,
+    // we remove the old one
+    duplicates.forEach((dupe) => dupe.remove());
   }
 </script>

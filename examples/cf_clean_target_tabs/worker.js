@@ -1,6 +1,6 @@
 class IFrameInjector {
   element(element) {
-    element.append(
+    element.after(
       `<iframe hidden name="#${element.getAttribute('id')}" onload="window.htmz?.(this)"></iframe>`,
       { html: true }
     );
