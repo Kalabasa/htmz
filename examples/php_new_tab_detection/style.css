@@ -1,0 +1,17 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+  margin: 20vh auto;
+  max-width: 60ch;
+  background: #fffff4;
+  color: #331;
+}
+
+h1 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.content-container {
+  border: solid 1px currentColor;
+  padding: 1rem;
+}
