@@ -330,6 +330,33 @@
       </section>
 
       <section>
+        <h3>Support opening links in a new tab</h3>
+        <p>
+          In the htmz model, you link to HTML <em>fragments</em> that are
+          designed to be inserted into an existing page. But what if the user
+          opens these links in a new tab? They would see these partial UIs on
+          their own &mdash; a pretty bad user experience!
+        </p>
+        <p>
+          Using the
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-Fetch-Dest"
+            target="_blank"
+            >Sec-Fetch-Dest</a
+          >
+          header, you can
+          <a
+            href="https://github.com/Kalabasa/htmz/blob/master/examples/php_new_tab_detection/content.php"
+            target="_blank"
+            >fall back to a full page</a
+          >
+          in these cases. This header lets the server know the request’s
+          destination and render either a framgment or a full page
+          appropriately.
+        </p>
+      </section>
+
+      <section>
         <h3>Scripting / interactivity</h3>
         <p>
           If you need something more interactive than the request-response
