@@ -79,9 +79,10 @@ section:has(:target):not(:has(section :target)) {
   text-align: center;
   margin-bottom: 0;
 }
-.title > .support {
+.title .decor {
   display: inline-block;
   width: 2ch;
+  font-variant-ligatures: none;
   text-align: start;
   opacity: 0.6;
   color: #0bd;
@@ -143,7 +144,8 @@ section:has(:target):not(:has(section :target)) {
   margin: 0;
   display: inline-block;
 }
-.hero > h1 > .support {
+.hero .decor {
+  font-variant-ligatures: none;
   opacity: 0.6;
   color: #0bd;
   transition: opacity 0.2s, color 0.2s;
@@ -152,7 +154,7 @@ section:has(:target):not(:has(section :target)) {
   .hero > .support {
     visibility: visible;
   }
-  .hero.idle > h1 > .support {
+  .hero.idle .decor {
     opacity: 0.3;
     color: inherit;
   }
@@ -181,6 +183,7 @@ section:has(:target):not(:has(section :target)) {
 }
 
 .panel {
+  border: none;
   border-bottom: solid 1px #0002;
   background: #f8fcff;
   border-radius: 0.5rem;
