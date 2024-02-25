@@ -7,7 +7,7 @@
       // Watch for the 'unload' event as a proxy for load start.
       // The initial about:blank page also counts when unloading.
       frame.contentWindow.addEventListener("unload", () => {
-        // Wait for destination location
+        // Wait for destination location for the hash
         setTimeout(() => {
           document
             .querySelector(frame.contentWindow.location.hash || null)
@@ -23,12 +23,7 @@
       });
     }
   </script>
-  <iframe
-    hidden
-    name="htmz"
-    onbeforeunload="window.beforeHtmz(this)"
-    onload="window.htmz(this)"
-  ></iframe>
+  <iframe hidden name="htmz" onload="window.htmz(this)"></iframe>
 </div>
 
 <div id="extension-description">
@@ -39,18 +34,22 @@
   </p>
 </div>
 
-<a href="content.html#content" target="htmz">Load content</a>
-<div id="content"></div>
+<div id="content">
+  <a href="content.html#content" target="htmz">Load content</a>
+</div>
 
 <style>
   .loader {
     width: 2rem;
     height: 2rem;
-    border: 0.25rem solid #f0f;
+    border: 0.25rem solid #f80;
     border-bottom-color: transparent;
     border-radius: 50%;
     box-sizing: border-box;
     animation: loader 1s linear infinite;
+  }
+  .loader * {
+    display: none;
   }
 
   @keyframes loader {

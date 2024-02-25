@@ -20,8 +20,8 @@
 
     <section>
       <p class="intro">
-        <b>htmz</b> is a minimalist HTML microframework that gives you the power
-        to create modular web user interfaces with the familiar simplicity of
+        <b>htmz</b> is a minimalist HTML microframework for creating interactive
+        and modular web user interfaces with the familiar simplicity of
         <strong class="stronger">plain HTML</strong>.
         <a href="https://github.com/Kalabasa/htmz" target="_blank">[GitHub]</a>
       </p>
@@ -56,8 +56,8 @@
 
     <section>
       <p>
-        <b>In a nutshell, htmz</b> lets you swap page fragments using vanilla
-        HTML code.
+        <b>In a nutshell, htmz</b> lets you swap page fragments on request using
+        vanilla HTML.
       </p>
       <p>
         Imagine clicking a link, but instead of reloading the whole page, it
@@ -195,8 +195,7 @@
       <p>htmz does one thing and one thing only.</p>
       <p class="mission">
         <strong class="stronger">
-          Enable you to load HTML resources within <em>any element</em> in the
-          page.
+          Load HTML onto <em>any element</em> in the page on request.
         </strong>
       </p>
       <p>
@@ -336,17 +335,16 @@
       <section>
         <h3>Support opening links in a new tab</h3>
         <p>
-          In the htmz model, you link to HTML <em>fragments</em> that are
-          designed to be inserted into an existing page. But what if the user
-          opens these links in a new tab? They would see these partial UIs on
-          their own &mdash; a pretty bad user experience!
+          What if the user opens an htmz link in a new tab? Well, they would be
+          loading your page fragment, carefully designed to be injected into an
+          exsting page, on its own!
         </p>
         <p>
           Using the
           <a
             href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-Fetch-Dest"
             target="_blank"
-            >Sec-Fetch-Dest</a
+            ><strong>Sec-Fetch-Dest</strong></a
           >
           header, you can
           <a
@@ -526,6 +524,10 @@
           either consolidation or fragmentation of UI logic, which respectively
           decreases or increases complexity. It really depends on your goal and
           style.
+        </p>
+        <p>
+          Lastly, this is not a templating library! No HTML imports or
+          client-side includes.
         </p>
       </section>
     </section>

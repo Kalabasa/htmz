@@ -188,15 +188,9 @@ section:has(:target):not(:has(section :target)) {
   border-radius: 0.5rem;
 }
 
-pre.code {
-  padding: 0.5rem;
-  white-space: pre-wrap;
-  word-break: break-all;
-  border-radius: 0.5rem;
-}
 .code {
   padding: 0 0.25rem;
-  background: #3a424f;
+  background: #2e343f;
   color: #ddd;
   border-radius: 0.25rem;
 }
@@ -204,6 +198,21 @@ pre.code {
   white-space: pre;
   overflow: auto;
   max-width: unset;
+}
+pre.code {
+  padding: 0.5rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+  border-radius: 0.5rem;
+}
+pre.code:has(code) {
+  padding: 0;
+  overflow: auto;
+}
+pre.code code {
+  display: block;
+  padding: 0.5rem !important;
+  background: none;
 }
 .code i,
 .code-term {
@@ -309,7 +318,7 @@ pre.code {
 }
 
 @supports (background-clip: text) {
-  .rainbow-mask {
+  pre.code code.rainbow-mask {
     display: inline-block;
     background-size: 215% 100%;
     background-clip: text;

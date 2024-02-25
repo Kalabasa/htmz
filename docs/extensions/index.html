@@ -61,7 +61,8 @@
       }
 
       .extension-pane {
-        flex: 1 1 80%;
+        flex: 0 0 80%;
+        overflow: auto;
       }
 
       iframe[name="extension-demo-frame"] {
@@ -248,12 +249,14 @@
       }
 
       function showSourceCode(code) {
-        const codeElement = document.createElement("pre");
-        codeElement.classList.add("code");
-        codeElement.classList.add("wide");
+        const preElement = document.createElement("pre");
+        preElement.classList.add("code");
+        preElement.classList.add("wide");
+        const codeElement = document.createElement("code");
         codeElement.textContent = formatSourceCode(code.innerHTML);
         hljs?.highlightElement(codeElement);
-        codeContainer.replaceChildren(codeElement);
+        preElement.appendChild(codeElement);
+        codeContainer.replaceChildren(preElement);
       }
 
       function formatSourceCode(text) {
