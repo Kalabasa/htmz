@@ -3,4 +3,4 @@
 
 <h1>new tab detection</h1>
 
-<p>Detect when a URL is loaded in the htmz iframe or in a new tab and render either a framgment or a full page appropriately</p>
+<p>Detect when a URL is loaded in the htmz iframe or in a new tab and render either a fragment or a full page appropriately</p>
