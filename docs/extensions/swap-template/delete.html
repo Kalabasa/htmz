@@ -1,0 +1,11 @@
+<script>
+    const item = parseInt(new URL(location).searchParams.get("item") ?? 0); 
+    document.write(`
+    <template>
+    </template>
+
+    <template id="message">
+        <div id="message" style="background: #faa;">Deleted item #${item}</div>
+    </template>
+  `);
+  </script>
