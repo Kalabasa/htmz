@@ -20,9 +20,10 @@
           const slot = template.content.querySelector("slot");
           
           if(slot) {
-            const copy = target.cloneNode(false);
+            const copy = target.cloneNode();
             target.replaceWith(copy);
             slot.replaceWith.apply(slot, slot.name == "children" ? [...target.children] : [target]);
+            if(slot.children.length) target.replaceChildren(...slot.children);
             target = copy;
           }
           
@@ -47,7 +48,7 @@
 <div id="extension-description">
   <h2>swap-template</h2>
   <p>
-    Sometimes it would be nice to be able to be able to preserve the target element 
+    Sometimes it would be nice to be able to preserve the target element 
     or its children in the DOM tree. This extension allows you to do just that by using HTML
     fragments wrapped in 
     <a
@@ -62,8 +63,10 @@
     ><code>&lt;slot></code></a
     > elements within them.
     <dl>
-      <dt><code>&lt;slot></code></dt> <dd>Represents the original element</dd>
-      <dt><code>&lt;slot name="children"></code></dt> <dd>Represents the original element child nodes</dd>
+      <dt><code>&lt;slot></code></dt> <dd>Represents the original element as is</dd>
+      <dt><code>&lt;slot>...some new content&lt;/slot></code></dt> <dd>Represents the original element 
+        with its children replaced with some new content</dd>
+      <dt><code>&lt;slot name="children"></code></dt> <dd>Represents the original element child nodes</dd>      
     </dl>
   </p>
   <p>
