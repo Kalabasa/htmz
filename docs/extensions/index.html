@@ -68,6 +68,10 @@
       iframe[name="extension-demo-frame"] {
         width: 100%;
         height: 15rem;
+        opacity: 0;
+      }
+      iframe.loaded {
+        opacity: 1;
       }
 
       #extension-code-container pre {
@@ -79,75 +83,47 @@
         align-items: center;
         min-height: 15rem;
       }
-
-      .add-to-basket-row {
-        margin: 1rem 0;
-      }
-      .add-to-basket-row:has(:disabled) {
-        display: none;
-      }
-      #add-to-basket {
-        font: inherit;
-        font-weight: bold;
-        padding: 0.25rem 0.5rem;
-        background: #0bd;
-        color: #fff;
-        cursor: pointer;
-      }
-      #add-to-basket .decor {
-        display: inline-block;
-        font-family: monospace;
-        font-variant-ligatures: none;
-        vertical-align: middle;
-        opacity: 0.6;
-        width: 1ch;
-        clip-path: inset(0 0 0 0);
-      }
-      #add-to-basket:focus-visible .decor,
-      #add-to-basket:hover .decor {
-        animation: decorAnimation 1s steps(4) infinite;
-      }
-      @keyframes decorAnimation {
-        from {
-          transform: translateX(-200%);
-          clip-path: inset(0 -200% 0 200%);
-        }
-      }
-
-      #basket {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 100%;
-        border-radius: 0;
-        transition: transform 0.2s;
-      }
-      #basket:has(#toggle-basket :checked) {
-        transform: translateX(-100%);
-        box-shadow: 0 0 2rem #0002;
-      }
-      #toggle-basket {
-        position: absolute;
-        right: calc(100% - 1rem);
-        font: inherit;
-        margin-top: 1rem;
-        padding: 0.5rem 2rem 0.5rem 1rem;
-        box-shadow: 0 0 2rem #0002;
-        cursor: pointer;
-        z-index: -1;
-      }
-      #toggle-basket input {
-        display: none;
-      }
-      .basket-content {
-        width: 60rem;
-        max-width: calc(100vw - 12rem);
-        height: 100%;
-        padding: 1rem;
-        overflow: auto;
-        overscroll-behavior: contain;
-      }
     </style>
+
+    <script>
+      function onExtensionLoad(frame) {
+        const descriptionContainer = document.getElementById(
+          "extension-description-container"
+        );
+        const codeContainer = document.getElementById(
+          "extension-code-container"
+        );
+
+        const code = frame.contentDocument.getElementById("extension-code");
+        const description = frame.contentDocument.getElementById(
+          "extension-description"
+        );
+
+        if (description) descriptionContainer.replaceChildren(description);
+        if (code) codeContainer.replaceChildren(createSourceCodeElement(code));
+
+        frame.classList.add("loaded");
+        frame.contentWindow.addEventListener("unload", () => {
+          frame.classList.remove("loaded");
+        });
+      }
+
+      function createSourceCodeElement(code) {
+        const preElement = document.createElement("pre");
+        preElement.classList.add("code");
+        preElement.classList.add("wide");
+        const codeElement = document.createElement("code");
+        codeElement.textContent = formatSourceCode(code.innerHTML);
+        hljs?.highlightElement(codeElement);
+        preElement.appendChild(codeElement);
+        return preElement;
+      }
+
+      function formatSourceCode(text) {
+        const indent = text.match(/^[\n\r]\s*/)?.[0];
+        return text.replaceAll(indent, "\n").trim();
+      }
+    </script>
   </head>
   <body>
     <div class="header-row">
@@ -199,6 +175,7 @@
         <iframe
           name="extension-demo-frame"
           class="demo-result"
+          src="about:blank"
           onload="window.onExtensionLoad?.(this)"
         ></iframe>
 
@@ -208,151 +185,8 @@
             No extension selected!
           </div>
         </div>
-
-        <!-- <div class="add-to-basket-row">
-          <button id="add-to-basket" class="panel" disabled>
-            <span class="decor" aria-hidden>=>=</span>
-            add to basket
-            <span class="decor" aria-hidden>>=></span>
-          </button>
-          or copy the snippet above.
-        </div> -->
       </div>
     </main>
-
-    <!-- <aside id="basket" class="panel">
-      <label id="toggle-basket" class="panel">
-        basket
-        <input type="checkbox" aria-label="Toggle basket" />
-      </label>
-      <div class="basket-content">
-        <pre id="basket-total" class="code wide"></pre>
-      </div>
-    </aside> -->
-
-    <script>
-      const basket = [];
-
-      const descriptionContainer = document.getElementById(
-        "extension-description-container"
-      );
-      const codeContainer = document.getElementById("extension-code-container");
-      const addToBasketButton = document.getElementById("add-to-basket");
-      const basketTotal = document.getElementById("basket-total");
-
-      setTimeout(() => onUpdateBasket());
-
-      function onExtensionLoad(frame) {
-        const code = frame.contentDocument.getElementById("extension-code");
-        const description = frame.contentDocument.getElementById(
-          "extension-description"
-        );
-
-        if (description) descriptionContainer.replaceChildren(description);
-        if (code) showSourceCode(code);
-        setUpAddToBasket();
-      }
-
-      function showSourceCode(code) {
-        const preElement = document.createElement("pre");
-        preElement.classList.add("code");
-        preElement.classList.add("wide");
-        const codeElement = document.createElement("code");
-        codeElement.textContent = formatSourceCode(code.innerHTML);
-        hljs?.highlightElement(codeElement);
-        preElement.appendChild(codeElement);
-        codeContainer.replaceChildren(preElement);
-      }
-
-      function formatSourceCode(text) {
-        const indent = text.match(/^[\n\r]\s*/)?.[0];
-        return text.replaceAll(indent, "\n").trim();
-      }
-
-      function setUpAddToBasket() {
-        if (!addToBasketButton) return; // basket feature is disabled
-
-        addToBasketButton.disabled = false;
-        addToBasketButton.onclick = () => {
-          const match = codeContainer.textContent.match(
-            /function htmz\(frame\)\s*\{(.*?)setTimeout\(\(\)\s*=>\s*\{?(.*?)document\s*\.querySelector\(frame\.contentWindow\.location\.hash\s*\|\|\s*null\)\s*\?\.replaceWith\(\.\.\.frame\.contentDocument\.body\.childNodes\);?(.*?)\}?\);\s*\}\s*<\/script>/ms
-          );
-
-          if (!match) {
-            alert(
-              "Error parsing extension code! You have to manually copy the snippet."
-            );
-            return;
-          }
-
-          const parts = match
-            .slice(1)
-            .map(
-              (part) =>
-                part.match(/^\s*\/\/ ?\-+8<\-+.+?\/\/ ?\-+>8\-+\s*$/ms)?.[0]
-            );
-          const [preTimeout, pre, post] = parts;
-          addToBasket({ preTimeout, pre, post });
-        };
-      }
-
-      function addToBasket(extension) {
-        basket.push(extension);
-        onUpdateBasket();
-      }
-
-      function onUpdateBasket() {
-        if (!addToBasketButton) return; // basket feature is disabled
-
-        basketTotal.textContent = buildSnippet(
-          formatSnippets(basket.map((ext) => ext.preTimeout ?? "")),
-          formatSnippets(basket.map((ext) => ext.pre ?? "")),
-          formatSnippets(basket.map((ext) => ext.post ?? ""))
-        );
-
-        delete basketTotal.dataset.highlighted;
-        hljs?.highlightElement(basketTotal);
-      }
-
-      function formatSnippets(snippets) {
-        return snippets
-          .map((snippet) =>
-            snippet
-              .split("\n")
-              .filter((line) => /\S/.test(line))
-              .map((line, index, lines) =>
-                index >= 3 && index < lines.length - 2
-                  ? line.replace(/\/\/.*/, "")
-                  : line
-              )
-              .filter((line) => /\S/.test(line))
-              .join("\n")
-          )
-          .filter((snippet) => snippet);
-      }
-
-      function buildSnippet(preTimeout, pre, post) {
-        // prettier-ignore
-        return [
-`\
-<script>
-  function htmz(frame) {`,
-...preTimeout,
-`    setTimeout(() => {`,
-...pre,
-`\
-      document
-        .querySelector(frame.contentWindow.location.hash || null)
-        ?.replaceWith(...frame.contentDocument.body.childNodes);`,
-...post,
-`\
-    });
-  }
-</${"script"}>
-<iframe hidden name="htmz" onload="window.htmz(this)"></iframe>`
-        ].join("\n\n");
-      }
-    </script>
 
     <script
       async
