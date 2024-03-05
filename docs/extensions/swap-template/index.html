@@ -21,13 +21,13 @@
             const copy = target.cloneNode();
             target.replaceWith(copy);
             if(!slot.name) {
-              if (!slot.children.length) {
+              if (!slot.childNodes.length) {
                 slot.replaceWith(target); // <slot></slot>
               } else {
-                target.replaceChildren(...slot.children); // <slot>...</slot>
+                target.replaceChildren(...slot.childNodes); // <slot>...</slot>
               }
             } else if(slot.name === "children") {
-              slot.replaceWith(...target.children); // <slot name="children">
+              slot.replaceWith(...target.childNodes); // <slot name="children">
             }
             target = copy;
           }
@@ -38,7 +38,7 @@
 
         document
           .querySelector(frame.contentWindow.location.hash || null)
-          ?.replaceWith(...frame.contentDocument.body.children);
+          ?.replaceWith(...frame.contentDocument.body.childNodes);
 
         frame.contentWindow.location.replace("about:blank");
       });

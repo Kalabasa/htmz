@@ -38,7 +38,7 @@
     setTimeout(() =>
       document
         .querySelector(frame.contentWindow.location.hash || null)
-        ?.replaceWith(...frame.contentDocument.body.children)
+        ?.replaceWith(...frame.contentDocument.body.childNodes)
     );
   }
 </script>

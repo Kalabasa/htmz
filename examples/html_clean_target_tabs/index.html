@@ -21,6 +21,6 @@
   function htmz(frame) {
     document
       .querySelector(frame.name) // use the iframe's name instead of the URL hash
-      ?.replaceWith(...frame.contentDocument.body.children);
+      ?.replaceWith(...frame.contentDocument.body.childNodes);
   }
 </script>

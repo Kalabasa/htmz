@@ -275,7 +275,7 @@
         addToBasketButton.disabled = false;
         addToBasketButton.onclick = () => {
           const match = codeContainer.textContent.match(
-            /function htmz\(frame\)\s*\{(.*?)setTimeout\(\(\)\s*=>\s*\{?(.*?)document\s*\.querySelector\(frame\.contentWindow\.location\.hash\s*\|\|\s*null\)\s*\?\.replaceWith\(\.\.\.frame\.contentDocument\.body\.children\);?(.*?)\}?\);\s*\}\s*<\/script>/ms
+            /function htmz\(frame\)\s*\{(.*?)setTimeout\(\(\)\s*=>\s*\{?(.*?)document\s*\.querySelector\(frame\.contentWindow\.location\.hash\s*\|\|\s*null\)\s*\?\.replaceWith\(\.\.\.frame\.contentDocument\.body\.childNodes\);?(.*?)\}?\);\s*\}\s*<\/script>/ms
           );
 
           if (!match) {
@@ -343,7 +343,7 @@
 `\
       document
         .querySelector(frame.contentWindow.location.hash || null)
-        ?.replaceWith(...frame.contentDocument.body.children);`,
+        ?.replaceWith(...frame.contentDocument.body.childNodes);`,
 ...post,
 `\
     });

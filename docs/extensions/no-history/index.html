@@ -12,7 +12,7 @@
       setTimeout(() => {
         document
           .querySelector(frame.contentWindow.location.hash || null)
-          ?.replaceWith(...frame.contentDocument.body.children);
+          ?.replaceWith(...frame.contentDocument.body.childNodes);
         // ---------------------------------8<-----------------------------------
         frame.remove();
         document.body.appendChild(frame);

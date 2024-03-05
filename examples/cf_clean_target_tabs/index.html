@@ -23,7 +23,7 @@
 
     document
       .querySelector(frame.name)
-      ?.replaceWith(...frame.contentDocument.body.children);
+      ?.replaceWith(...frame.contentDocument.body.childNodes);
 
     // Workaround to Chrome bug:
     // Chrome can't handle iframes being inside the replaced target, but Firefox can.
