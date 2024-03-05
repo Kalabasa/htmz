@@ -1,0 +1,21 @@
+<script>
+    const item = new URL(location).searchParams.get("item");
+    const count = parseInt(new URL(location).searchParams.get("count") ?? 0); 
+    document.write(`
+    <template>
+        <li id="item${count}">            
+            ${item}    
+            <a href="delete.html?item=${count}#item${count}" target="htmz">[x]</a>
+        </li>
+        <slot />
+    </template>
+
+    <template id="counter">
+        <input id="counter" type="hidden" name="count" value="${count + 1}">
+    </template>
+
+    <template id="message">
+        <div id="message" style="background: #afa;">Added item #${count}</div>
+    </template>
+  `);
+  </script>
