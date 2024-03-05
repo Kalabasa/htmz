@@ -11,9 +11,7 @@
         // optionally allowing to preserve the element itself or its children, or delete the element altogether.  
 
         frame.contentDocument.querySelectorAll("head>template").forEach(template => {
-          let target = template.id 
-            ? document.getElementById(template.id) 
-            : document.querySelector(frame.contentWindow.location.hash || null);
+          let target = document.querySelector(frame.contentWindow.location.hash || null);
           
           if(!target) return;
 
@@ -22,15 +20,19 @@
           if(slot) {
             const copy = target.cloneNode();
             target.replaceWith(copy);
-            slot.replaceWith.apply(slot, slot.name == "children" ? [...target.children] : [target]);
-            if(slot.children.length) target.replaceChildren(...slot.children);
+            if(!slot.name) {
+              if (!slot.children.length) {
+                slot.replaceWith(target); // <slot></slot>
+              } else {
+                target.replaceChildren(...slot.children); // <slot>...</slot>
+              }
+            } else if(slot.name === "children") {
+              slot.replaceWith(...target.children); // <slot name="children">
+            }
             target = copy;
           }
           
-          if(template.id) 
-            target.replaceWith(template.content); 
-          else 
-            frame.contentDocument.body.append(template.content);
+          frame.contentDocument.body.append(template.content);
         });
         // --------------------------------->8-----------------------------------
 
@@ -47,6 +49,7 @@
 
 <div id="extension-description">
   <h2>swap-template</h2>
+  <p><i>contributed by yuretz</i></p>
   <p>
     Sometimes it would be nice to be able to preserve the target element 
     or its children in the DOM tree. This extension allows you to do just that by using HTML
@@ -70,11 +73,6 @@
     </dl>
   </p>
   <p>
-    Out-of-band multi-target swaps are allowed by setting an <code>id</code> attribute on a <code>&lt;template></code> 
-    element.
-    It is also becomes possible to delete the entire target element by swapping it with an empty <code>&lt;template></code>. 
-  </p>
-  <p>
     The example below demonstrates a simple editable list implemented using this extension features.
   </p>
 </div>
@@ -86,28 +84,10 @@
       <button>Add</button>
     </li>
   </ul>
-  <input id="counter" type="hidden" name="count" value="1">
 </form>
 
-<div id="message"></div>
-
 <style>
-  #message:not(:empty) {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    margin: 0.5rem;
-    padding: 0.5rem;    
-    animation: alert 0.5s cubic-bezier(0.4, 1.5, 0.4, 1);
-  }
-
   .items li {
     margin-bottom: 0.5rem;
-  }
-
-  @keyframes alert {
-    from {
-      transform: scale(0.0001);
-    }
   }
 </style>
