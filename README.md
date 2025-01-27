@@ -6,7 +6,7 @@ _a low power tool for html_
 
 Zero dependencies. Zero JS bundles to load. Not even a backend is required. _Just an inline HTML snippet_.
 
-See the [documentation website](https://kalabasa.github.io/htmz) for more details, usage, examples, and more.
+See the [documentation website](https://leanrada.com/htmz/) for more details, usage, examples, and more.
 
 ## Installing
 
